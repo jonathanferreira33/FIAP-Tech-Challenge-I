@@ -6,6 +6,7 @@ public record PurchaseOrders(
         int idPurchaseOrders,
         Date startDate,
         Date endDate,
-        String description
+        String description,
+        StepEnum stepEnum
 ) {
 }
