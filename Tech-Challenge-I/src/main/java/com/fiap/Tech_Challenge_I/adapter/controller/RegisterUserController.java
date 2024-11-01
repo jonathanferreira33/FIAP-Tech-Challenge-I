@@ -1,18 +1,29 @@
 package com.fiap.Tech_Challenge_I.adapter.controller;
 
-import com.fiap.Tech_Challenge_I.adapter.Request.UserRequest;
-import com.fiap.Tech_Challenge_I.adapter.Response.UserResponse;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.fiap.Tech_Challenge_I.adapter.coverter.UserConverter;
+import com.fiap.Tech_Challenge_I.adapter.request.UserRequest;
+import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
+import com.fiap.Tech_Challenge_I.core.port.IRegisterUserServicePort;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("api/registeruser")
 public class RegisterUserController {
 
+    private final IRegisterUserServicePort registerServiceport;
+    private final UserConverter userConverter;
+
+    public RegisterUserController(IRegisterUserServicePort registerServiceport, UserConverter userConverter) {
+        this.registerServiceport = registerServiceport;
+        this.userConverter = userConverter;
+    }
+
     @PostMapping
-    public UserRequest createUser(@RequestBody UserRequest userRequest) {
-        return userRequest;
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserResponse createUser(@RequestBody UserRequest userRequest) {
+        var user = registerServiceport.registerUser(UserConverter.userRequestToUser(userRequest));
+        return UserConverter.userToUserReponse(user);
     }
 }

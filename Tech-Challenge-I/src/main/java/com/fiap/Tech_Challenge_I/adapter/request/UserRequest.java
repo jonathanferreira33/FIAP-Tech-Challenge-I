@@ -1,39 +1,19 @@
-package com.fiap.Tech_Challenge_I.core.domain;
+package com.fiap.Tech_Challenge_I.adapter.request;
 
-public class User{
+import com.fiap.Tech_Challenge_I.core.domain.UserTypeEnum;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    private int id;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class UserRequest {
     private String firstName;
     private String lastName;
     private String email;
     private boolean admin;
     private UserTypeEnum tipoUsuario;
-
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.admin = false;
-    }
-
-    public User(String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.admin = admin;
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
