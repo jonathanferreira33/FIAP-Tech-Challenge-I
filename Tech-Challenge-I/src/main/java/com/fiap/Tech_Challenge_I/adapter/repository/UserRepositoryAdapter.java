@@ -18,9 +18,9 @@ public class UserRepositoryAdapter implements IUserRepositoryPort {
     }
 
     @Override
-    public User create(User user) {
+    public UserEntity create(UserEntity user) {
         UserEntity newUser = userRepository
                 .save(mapper.map(user, UserEntity.class));
-        return mapper.map(newUser, User.class);
+        return mapper.map(newUser, UserEntity.class);
     }
 }

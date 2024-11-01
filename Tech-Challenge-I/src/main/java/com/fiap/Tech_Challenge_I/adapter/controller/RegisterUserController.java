@@ -23,7 +23,8 @@ public class RegisterUserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse createUser(@RequestBody UserRequest userRequest) {
-        var user = registerServiceport.registerUser(UserConverter.userRequestToUser(userRequest));
+        var userentity = registerServiceport.registerUser(UserConverter.userRequestToUser(userRequest));
+        var user = UserConverter.userEntityToUser(userentity);
         return UserConverter.userToUserReponse(user);
     }
 }

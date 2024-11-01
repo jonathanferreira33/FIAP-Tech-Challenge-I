@@ -1,4 +1,7 @@
 package com.fiap.Tech_Challenge_I.core.service;
+
+import com.fiap.Tech_Challenge_I.adapter.coverter.UserConverter;
+import com.fiap.Tech_Challenge_I.adapter.entity.UserEntity;
 import com.fiap.Tech_Challenge_I.core.domain.User;
 import com.fiap.Tech_Challenge_I.core.port.IRegisterUserServicePort;
 import com.fiap.Tech_Challenge_I.core.port.IUserRepositoryPort;
@@ -13,8 +16,7 @@ public class RegisterUserService implements IRegisterUserServicePort {
     }
 
     @Override
-    public User registerUser(User user) {
-        //servico
-        return userRepositoryPort.create(user);
+    public UserEntity registerUser(User user) {
+        return userRepositoryPort.create(UserConverter.userToUserEntity(user));
     }
 }
