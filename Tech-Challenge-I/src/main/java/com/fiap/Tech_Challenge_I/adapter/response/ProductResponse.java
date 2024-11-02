@@ -1,31 +1,22 @@
-package com.fiap.Tech_Challenge_I.adapter.entity;
+package com.fiap.Tech_Challenge_I.adapter.response;
 
 import com.fiap.Tech_Challenge_I.core.domain.CategoryEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
-@Table(name = "TCDB_PRODUCT")
-public class ProductsEntity {
-
-    @Id
-    @GeneratedValue
+public class ProductResponse {
     private int idProduct;
     private String productName;
     private Double price;
     private String shortDescription;
     private CategoryEnum category;
 
-    public ProductsEntity() {
+    public ProductResponse() {
     }
 
-    public ProductsEntity(int idProduct, String productName, Double price, String shortDescription, CategoryEnum category) {
+    public ProductResponse(int idProduct, String productName, Double price, String shortDescription, CategoryEnum category) {
         this.idProduct = idProduct;
         this.productName = productName;
         this.price = price;
