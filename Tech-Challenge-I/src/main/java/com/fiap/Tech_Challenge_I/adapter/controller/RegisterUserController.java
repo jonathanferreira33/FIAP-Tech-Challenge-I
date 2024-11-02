@@ -27,4 +27,11 @@ public class RegisterUserController {
         var user = UserConverter.userEntityToUser(userentity);
         return UserConverter.userToUserReponse(user);
     }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public UserResponse getAllUsers(){
+        return new UserResponse(1, "", "", "", true);
+    }
+
 }
