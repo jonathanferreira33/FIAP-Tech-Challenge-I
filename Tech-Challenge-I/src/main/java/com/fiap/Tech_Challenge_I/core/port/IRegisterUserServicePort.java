@@ -4,4 +4,5 @@ import com.fiap.Tech_Challenge_I.core.domain.User;
 
 public interface IRegisterUserServicePort {
     User registerUser(User user);
+    User userByDoc(String doc);
 }

@@ -26,11 +26,4 @@ public class RegisterUserController {
         var user = registerServiceport.registerUser(UserConverter.userRequestToUser(userRequest));
         return UserConverter.userToUserReponse(user);
     }
-
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public UserResponse getAllUsers(){
-        return new UserResponse(1, "", "", "", true);
-    }
-
 }

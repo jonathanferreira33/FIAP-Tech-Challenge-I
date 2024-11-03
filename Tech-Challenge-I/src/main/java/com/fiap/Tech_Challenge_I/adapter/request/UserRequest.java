@@ -14,6 +14,15 @@ public class UserRequest {
     private String email;
     private boolean admin;
     private UserTypeEnum tipoUsuario;
+    private String doc;
+
+    public String getDoc() {
+        return doc;
+    }
+
+    public void setDoc(String doc) {
+        this.doc = doc;
+    }
 
     public String getFirstName() {
         return firstName;

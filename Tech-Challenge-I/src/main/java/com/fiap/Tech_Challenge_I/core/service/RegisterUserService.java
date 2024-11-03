@@ -19,4 +19,10 @@ public class RegisterUserService implements IRegisterUserServicePort {
         var newUser = userRepositoryPort.create(UserConverter.userToUserEntity(user));
         return UserConverter.userEntityToUser(newUser);
     }
+
+    @Override
+    public User userByDoc(String doc) {
+        var user = userRepositoryPort.getUserByDoc(doc);
+        return UserConverter.userEntityToUser(user);
+    }
 }

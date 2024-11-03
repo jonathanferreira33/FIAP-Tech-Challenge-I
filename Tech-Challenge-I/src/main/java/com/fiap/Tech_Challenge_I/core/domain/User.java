@@ -8,23 +8,35 @@ public class User{
     private String email;
     private boolean admin;
     private UserTypeEnum tipoUsuario;
+    private String doc;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email) {
+    public User(String firstName, String lastName, String email, String doc) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.admin = false;
+        this.doc = doc;
     }
 
-    public User(String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario) {
+    public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.admin = admin;
         this.tipoUsuario = tipoUsuario;
+        this.doc = doc;
+    }
+
+    public String getDoc() {
+        return doc;
+    }
+
+    public void setDoc(String doc) {
+        this.doc = doc;
     }
 
     public int getId() {

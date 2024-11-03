@@ -20,25 +20,36 @@ public class UserEntity {
     private String email;
     private boolean admin;
     private UserTypeEnum tipoUsuario;
+    private String doc;
 
     public UserEntity() {
     }
 
-    public UserEntity(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario) {
+    public UserEntity(String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.admin = admin;
+        this.tipoUsuario = tipoUsuario;
+        this.doc = doc;
+    }
+
+    public UserEntity(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.admin = admin;
         this.tipoUsuario = tipoUsuario;
+        this.doc = doc;
     }
 
-    public UserEntity( String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.admin = admin;
-        this.tipoUsuario = tipoUsuario;
+    public String getDoc() {
+        return doc;
+    }
+
+    public void setDoc(String doc) {
+        this.doc = doc;
     }
 
     public int getId() {

@@ -2,9 +2,8 @@ package com.fiap.Tech_Challenge_I.adapter.response;
 
 import com.fiap.Tech_Challenge_I.core.domain.UserTypeEnum;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+
 @Data
 public class UserResponse {
     private int id;
@@ -13,22 +12,27 @@ public class UserResponse {
     private String email;
     private boolean admin;
     private UserTypeEnum tipoUsuario;
+    private String doc;
 
-    public UserResponse(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario) {
+    public UserResponse(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.admin = admin;
         this.tipoUsuario = tipoUsuario;
+        this.doc = doc;
     }
 
-    public UserResponse(int id, String firstName, String lastName, String email, boolean admin) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.admin = admin;
+    public UserResponse() {
+    }
+
+    public String getDoc() {
+        return doc;
+    }
+
+    public void setDoc(String doc) {
+        this.doc = doc;
     }
 
     public int getId() {
