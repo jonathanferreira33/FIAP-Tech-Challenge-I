@@ -1,0 +1,7 @@
+--CREATE TABLE TCDB_USER(
+--    id INT PRIMARY KEY,
+--    firstName VARCHAR(100),
+--    lastName VARCHAR(100),
+--    email BOOLEAN,
+--    tipoUsuario NUMERIC
+--    )
