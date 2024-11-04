@@ -6,6 +6,9 @@ import com.fiap.Tech_Challenge_I.core.port.IOrderRepositoryPort;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Optional;
+
 
 @Component
 public class OrderRepositoryAdapter implements IOrderRepositoryPort {
@@ -20,9 +23,19 @@ public class OrderRepositoryAdapter implements IOrderRepositoryPort {
 
     @Override
     public OrderEntity createOrder(OrderEntity order) {
-        orderEntity newOrder = orderRepository
+        OrderEntity newOrder = orderRepository
                 .save(mapper.map(order, OrderEntity.class));
         return mapper.map(newOrder, OrderEntity.class);
+    }
+
+    @Override
+    public List<OrderEntity> findAllOrder() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public Optional<OrderEntity> findOrderById(Integer id) {
+        return orderRepository.findById(id);
     }
 
 }

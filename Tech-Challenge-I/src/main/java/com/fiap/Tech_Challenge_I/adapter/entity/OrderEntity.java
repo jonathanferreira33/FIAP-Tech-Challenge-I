@@ -1,27 +1,23 @@
 package com.fiap.Tech_Challenge_I.adapter.entity;
 
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "TCDB_ORDER")
 public class OrderEntity {
     @Id
     @GeneratedValue
     private int idOrder;
-    private int idUser;
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private UserEntity user;
     private OrderStatusEnum orderStatus;
-    private String snack;
+    private String sandwich;
     private String followUp;
+    private String snack;
     private String drink;
     private String dessert;
     private Date startDate;
@@ -30,12 +26,13 @@ public class OrderEntity {
     public OrderEntity() {
     }
 
-    public OrderEntity(int idOrder, int idUser, String orderStatus, String snack, String followUp, String drink, String dessert, Date startDate, Date endDate) {
+    public OrderEntity(int idOrder, UserEntity user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
         this.idOrder = idOrder;
-        this.idUser = idUser;
+        this.user = user;
         this.orderStatus = orderStatus;
-        this.snack = snack;
+        this.sandwich = sandwich;
         this.followUp = followUp;
+        this.snack = snack;
         this.drink = drink;
         this.dessert = dessert;
         this.startDate = startDate;
@@ -50,12 +47,12 @@ public class OrderEntity {
         this.idOrder = idOrder;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     public OrderStatusEnum getOrderStatus() {
@@ -66,12 +63,12 @@ public class OrderEntity {
         this.orderStatus = orderStatus;
     }
 
-    public String getSnack() {
-        return snack;
+    public String getSandwich() {
+        return sandwich;
     }
 
-    public void setSnack(String snack) {
-        this.snack = snack;
+    public void setSandwich(String sandwich) {
+        this.sandwich = sandwich;
     }
 
     public String getFollowUp() {
@@ -80,6 +77,14 @@ public class OrderEntity {
 
     public void setFollowUp(String followUp) {
         this.followUp = followUp;
+    }
+
+    public String getSnack() {
+        return snack;
+    }
+
+    public void setSnack(String snack) {
+        this.snack = snack;
     }
 
     public String getDrink() {

@@ -28,7 +28,6 @@ public class ProductManagementRepositoryAdapter implements IProductRepositoryPor
 
     @Override
     public List<ProductEntity> findAllbyCategory(CategoryEnum category) {
-        var products = productManagementRepository.findByCategory(category);
-        return List.of(products);
+        return productManagementRepository.findByCategory(category);
     }
 }

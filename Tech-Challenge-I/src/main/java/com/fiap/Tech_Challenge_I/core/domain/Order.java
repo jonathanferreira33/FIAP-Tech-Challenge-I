@@ -4,21 +4,26 @@ import java.util.Date;
 
 public class Order{
     private int idOrder;
-    private String idUser;
+    private User user;
     private OrderStatusEnum orderStatus;
     private String sandwich;
     private String followUp;
+    private String snack;
     private String drink;
     private String dessert;
-    private  Date startDate;
+    private Date startDate;
     private Date endDate;
 
-    public OrderResponse(int idOrder, int idUser, OrderStatusEnum orderStatus, String snack, String followUp, String drink, String dessert, Date startDate, Date endDate) {
+    public Order() {
+    }
+
+    public Order(int idOrder, User user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
         this.idOrder = idOrder;
-        this.idUser = idUser;
+        this.user = user;
         this.orderStatus = orderStatus;
-        this.snack = snack;
+        this.sandwich = sandwich;
         this.followUp = followUp;
+        this.snack = snack;
         this.drink = drink;
         this.dessert = dessert;
         this.startDate = startDate;
@@ -33,12 +38,12 @@ public class Order{
         this.idOrder = idOrder;
     }
 
-    public String getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public OrderStatusEnum getOrderStatus() {
@@ -63,6 +68,14 @@ public class Order{
 
     public void setFollowUp(String followUp) {
         this.followUp = followUp;
+    }
+
+    public String getSnack() {
+        return snack;
+    }
+
+    public void setSnack(String snack) {
+        this.snack = snack;
     }
 
     public String getDrink() {

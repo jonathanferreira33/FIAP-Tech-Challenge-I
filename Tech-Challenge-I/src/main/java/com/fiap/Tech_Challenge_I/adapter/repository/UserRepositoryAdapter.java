@@ -30,7 +30,7 @@ public class UserRepositoryAdapter implements IUserRepositoryPort {
 
     @Override
     public UserEntity getUserByDoc(String doc) {
-        UserEntity userMatch = userRepository.findByDoc(doc);
+        UserEntity userMatch = userRepository.getUserByDoc(doc);
         return mapper.map(userMatch, UserEntity.class);
     }
 }

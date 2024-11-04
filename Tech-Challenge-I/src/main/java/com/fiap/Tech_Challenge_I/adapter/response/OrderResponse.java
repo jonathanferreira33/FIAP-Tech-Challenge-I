@@ -2,27 +2,36 @@ package com.fiap.Tech_Challenge_I.adapter.response;
 
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+import java.util.Date;
+
 @Data
 public class OrderResponse {
     private int idOrder;
-    private int idUser;
+    private UserResponse user;
     private OrderStatusEnum orderStatus;
-    private String snack;
+    private String sandwich;
     private String followUp;
+    private String snack;
     private String drink;
     private String dessert;
     private Date startDate;
     private Date endDate;
 
-    public OrderResponse(int idOrder, int idUser, OrderStatusEnum orderStatus, String snack, String followUp, String drink, String dessert, Date startDate, Date endDate) {
+    public OrderResponse() {
+    }
+
+    public OrderResponse(int idOrder) {
         this.idOrder = idOrder;
-        this.idUser = idUser;
+    }
+
+    public OrderResponse(int idOrder, UserResponse user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
+        this.idOrder = idOrder;
+        this.user = user;
         this.orderStatus = orderStatus;
-        this.snack = snack;
+        this.sandwich = sandwich;
         this.followUp = followUp;
+        this.snack = snack;
         this.drink = drink;
         this.dessert = dessert;
         this.startDate = startDate;
@@ -37,12 +46,12 @@ public class OrderResponse {
         this.idOrder = idOrder;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public UserResponse getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(UserResponse user) {
+        this.user = user;
     }
 
     public OrderStatusEnum getOrderStatus() {
@@ -53,12 +62,12 @@ public class OrderResponse {
         this.orderStatus = orderStatus;
     }
 
-    public String getSnack() {
-        return snack;
+    public String getSandwich() {
+        return sandwich;
     }
 
-    public void setSnack(String snack) {
-        this.snack = snack;
+    public void setSandwich(String sandwich) {
+        this.sandwich = sandwich;
     }
 
     public String getFollowUp() {
@@ -67,6 +76,14 @@ public class OrderResponse {
 
     public void setFollowUp(String followUp) {
         this.followUp = followUp;
+    }
+
+    public String getSnack() {
+        return snack;
+    }
+
+    public void setSnack(String snack) {
+        this.snack = snack;
     }
 
     public String getDrink() {

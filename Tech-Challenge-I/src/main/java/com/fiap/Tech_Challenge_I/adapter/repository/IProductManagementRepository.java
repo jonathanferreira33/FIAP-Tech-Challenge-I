@@ -4,6 +4,8 @@ import com.fiap.Tech_Challenge_I.adapter.entity.ProductEntity;
 import com.fiap.Tech_Challenge_I.core.domain.CategoryEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface IProductManagementRepository extends JpaRepository<ProductEntity, Integer> {
-    ProductEntity findByCategory(CategoryEnum category);
+    List<ProductEntity> findByCategory(CategoryEnum category);
 }
