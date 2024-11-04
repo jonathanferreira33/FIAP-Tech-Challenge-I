@@ -16,13 +16,22 @@ public class RegisterUserService implements IRegisterUserServicePort {
 
     @Override
     public User registerUser(User user) {
+
+        if(userRepositoryPort.findByDoc(user.getDoc()) != null)
+            throw new IllegalArgumentException("Usuário já cadastrado");
+
         var newUser = userRepositoryPort.create(UserConverter.userToUserEntity(user));
         return UserConverter.userEntityToUser(newUser);
     }
 
     @Override
     public User userByDoc(String doc) {
-        var user = userRepositoryPort.getUserByDoc(doc);
+        var user = userRepositoryPort.findByDoc(doc);
+
+        if (user == null)
+            return null;
+
         return UserConverter.userEntityToUser(user);
     }
+
 }

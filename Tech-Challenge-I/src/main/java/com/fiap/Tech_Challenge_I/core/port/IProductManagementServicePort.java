@@ -9,4 +9,6 @@ import java.util.List;
 public interface IProductManagementServicePort {
     Product registerProduct(Product product);
     List<ProductResponse> findProductsByCategory(CategoryEnum category);
+    Product findProductById(Integer id);
+    Product editProduct(Product product);
 }

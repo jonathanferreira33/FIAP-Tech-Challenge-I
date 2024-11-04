@@ -1,6 +1,7 @@
 package com.fiap.Tech_Challenge_I.adapter.controller;
 
 import com.fiap.Tech_Challenge_I.adapter.coverter.ProductConverter;
+import com.fiap.Tech_Challenge_I.adapter.request.ProductRequest;
 import com.fiap.Tech_Challenge_I.adapter.response.ProductResponse;
 import com.fiap.Tech_Challenge_I.core.domain.CategoryEnum;
 import com.fiap.Tech_Challenge_I.core.port.IProductManagementServicePort;
@@ -28,9 +29,15 @@ public class ProductManagementController {
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.OK)
-    public ProductResponse editProduct() {
-        return new ProductResponse();
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public ProductResponse editProduct(ProductRequest productRequest)
+    {
+
+        if(productManagementServicePort.findProductById(productRequest.getIdProduct()) == null)
+            throw new IllegalArgumentException("Produto não encontrado");
+
+        var productEdit = productManagementServicePort.editProduct(ProductConverter.productRequestToProduct(productRequest));
+        return ProductConverter.productToProductResponse(productEdit);
     }
 
     @DeleteMapping

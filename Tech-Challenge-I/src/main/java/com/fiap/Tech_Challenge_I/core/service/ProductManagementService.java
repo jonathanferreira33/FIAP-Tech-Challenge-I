@@ -29,4 +29,20 @@ public class ProductManagementService implements IProductManagementServicePort {
         var productsEntity = productRepositoryPort.findAllbyCategory(category);
         return ProductConverter.productEntitiesToProducts(productsEntity);
     }
+
+    @Override
+    public Product findProductById(Integer id) {
+        var product = productRepositoryPort.findById(id);
+
+        if (product == null)
+            return null;
+
+        return ProductConverter.productEntityToProduct(product);
+    }
+
+    @Override
+    public Product editProduct(Product product) {
+        productRepositoryPort.SetProduct(product);
+        return null;
+    }
 }

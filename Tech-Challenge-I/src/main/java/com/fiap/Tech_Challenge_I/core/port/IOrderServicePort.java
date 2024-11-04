@@ -7,4 +7,5 @@ import java.util.List;
 public interface IOrderServicePort {
     Order registerOrder(Order order);
     List<Order> findAllOrders();
+
 }
