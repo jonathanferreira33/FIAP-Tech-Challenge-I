@@ -1,7 +1,9 @@
 package com.fiap.Tech_Challenge_I.adapter.response;
 
 import com.fiap.Tech_Challenge_I.core.domain.CategoryEnum;
+import lombok.Data;
 
+@Data
 public class ProductResponse {
     private int idProduct;
     private String productName;

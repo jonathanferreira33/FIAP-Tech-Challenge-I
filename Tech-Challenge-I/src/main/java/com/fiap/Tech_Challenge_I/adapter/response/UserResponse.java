@@ -27,6 +27,10 @@ public class UserResponse {
     public UserResponse() {
     }
 
+    public UserResponse(int id) {
+        this.id = id;
+    }
+
     public String getDoc() {
         return doc;
     }
