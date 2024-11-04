@@ -1,29 +1,23 @@
-package com.fiap.Tech_Challenge_I.core.domain;
+package com.fiap.Tech_Challenge_I.adapter.request;
 
-import java.util.Date;
+import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class Order{
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class OrderRequest {
     private int idOrder;
-    private String idUser;
+    private int idUser;
     private OrderStatusEnum orderStatus;
-    private String sandwich;
+    private String snack;
     private String followUp;
     private String drink;
     private String dessert;
-    private  Date startDate;
+    private Date startDate;
     private Date endDate;
-
-    public OrderResponse(int idOrder, int idUser, OrderStatusEnum orderStatus, String snack, String followUp, String drink, String dessert, Date startDate, Date endDate) {
-        this.idOrder = idOrder;
-        this.idUser = idUser;
-        this.orderStatus = orderStatus;
-        this.snack = snack;
-        this.followUp = followUp;
-        this.drink = drink;
-        this.dessert = dessert;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 
     public int getIdOrder() {
         return idOrder;
@@ -33,11 +27,11 @@ public class Order{
         this.idOrder = idOrder;
     }
 
-    public String getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
@@ -49,12 +43,12 @@ public class Order{
         this.orderStatus = orderStatus;
     }
 
-    public String getSandwich() {
-        return sandwich;
+    public String getSnack() {
+        return snack;
     }
 
-    public void setSandwich(String sandwich) {
-        this.sandwich = sandwich;
+    public void setSnack(String snack) {
+        this.snack = snack;
     }
 
     public String getFollowUp() {
@@ -97,7 +91,3 @@ public class Order{
         this.endDate = endDate;
     }
 }
-
-
-
-
