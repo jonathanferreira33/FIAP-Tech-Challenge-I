@@ -1,5 +1,8 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
 import java.util.Date;
 
 public class Order{
@@ -13,11 +16,21 @@ public class Order{
     private String dessert;
     private Date startDate;
     private Date endDate;
+    private OrderStepEnum orderStep;
+
+    @OneToOne
+    @JoinColumn(name = "paymentId")
+    private Payment payment;
+
+    @OneToOne
+    @JoinColumn(name = "userId")
+    private PreOrder preOrder;
+
 
     public Order() {
     }
 
-    public Order(int idOrder, User user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
+    public Order(int idOrder, User user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate, OrderStepEnum orderStep) {
         this.idOrder = idOrder;
         this.user = user;
         this.orderStatus = orderStatus;
@@ -28,6 +41,23 @@ public class Order{
         this.dessert = dessert;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.orderStep = orderStep;
+    }
+
+    public Order(int idOrder, User user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate, OrderStepEnum orderStep, Payment payment, PreOrder preOrder) {
+        this.idOrder = idOrder;
+        this.user = user;
+        this.orderStatus = orderStatus;
+        this.sandwich = sandwich;
+        this.followUp = followUp;
+        this.snack = snack;
+        this.drink = drink;
+        this.dessert = dessert;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.orderStep = orderStep;
+        this.payment = payment;
+        this.preOrder = preOrder;
     }
 
     public int getIdOrder() {
@@ -108,6 +138,14 @@ public class Order{
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public OrderStepEnum getOrderStep() {
+        return orderStep;
+    }
+
+    public void setOrderStep(OrderStepEnum orderStep) {
+        this.orderStep = orderStep;
     }
 }
 

@@ -2,6 +2,7 @@ package com.fiap.Tech_Challenge_I.adapter.request;
 
 import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
+import com.fiap.Tech_Challenge_I.core.domain.OrderStepEnum;
 import lombok.Data;
 
 import java.util.Date;
@@ -18,6 +19,7 @@ public class OrderRequest {
     private String dessert;
     private Date startDate;
     private Date endDate;
+    private OrderStepEnum orderStep;
 
     public OrderRequest() {
     }
@@ -26,7 +28,7 @@ public class OrderRequest {
         this.idOrder = idOrder;
     }
 
-    public OrderRequest(int idOrder, UserResponse user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
+    public OrderRequest(int idOrder, UserResponse user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate, OrderStepEnum orderStep) {
         this.idOrder = idOrder;
         this.user = user;
         this.orderStatus = orderStatus;
@@ -37,6 +39,7 @@ public class OrderRequest {
         this.dessert = dessert;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.orderStep = orderStep;
     }
 
     public int getIdOrder() {
@@ -117,5 +120,13 @@ public class OrderRequest {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public OrderStepEnum getOrderStep() {
+        return orderStep;
+    }
+
+    public void setOrderStep(OrderStepEnum orderStep) {
+        this.orderStep = orderStep;
     }
 }

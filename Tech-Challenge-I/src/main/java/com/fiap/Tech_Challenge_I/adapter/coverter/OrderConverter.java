@@ -27,7 +27,8 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate()
+                order.getEndDate(),
+                order.getOrderStep()
         );
     }
 
@@ -41,7 +42,9 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate());
+                order.getEndDate(),
+                order.getOrderStep()
+        );
     }
 
     public static Order orderRequestToOrder(OrderRequest order){
@@ -55,7 +58,8 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate()
+                order.getEndDate(),
+                order.getOrderStep()
         );
     }
 
@@ -70,7 +74,8 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate()
+                order.getEndDate(),
+                order.getOrderStep()
         );
     }
 
@@ -85,7 +90,8 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate()
+                order.getEndDate(),
+                order.getOrderStep()
         );
     }
 

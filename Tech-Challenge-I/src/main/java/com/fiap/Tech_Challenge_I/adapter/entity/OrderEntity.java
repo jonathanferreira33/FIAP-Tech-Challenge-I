@@ -1,6 +1,7 @@
 package com.fiap.Tech_Challenge_I.adapter.entity;
 
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
+import com.fiap.Tech_Challenge_I.core.domain.OrderStepEnum;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -22,11 +23,12 @@ public class OrderEntity {
     private String dessert;
     private Date startDate;
     private Date endDate;
+    private OrderStepEnum orderStep;
 
     public OrderEntity() {
     }
 
-    public OrderEntity(int idOrder, UserEntity user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
+    public OrderEntity(int idOrder, UserEntity user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate, OrderStepEnum orderStep) {
         this.idOrder = idOrder;
         this.user = user;
         this.orderStatus = orderStatus;
@@ -37,6 +39,7 @@ public class OrderEntity {
         this.dessert = dessert;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.orderStep = orderStep;
     }
 
     public int getIdOrder() {
@@ -117,5 +120,18 @@ public class OrderEntity {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public OrderStepEnum getOrderStep() {
+        return orderStep;
+    }
+
+    public void setOrderStep(OrderStepEnum orderStep) {
+        this.orderStep = orderStep;
+    }
+
+    public OrderStepEnum progressOrderStep(){
+        int orderStepCurrent = this.orderStep.getOrderStepEvent();
+        return this.orderStep.fromOrderStep(orderStepCurrent++);
     }
 }

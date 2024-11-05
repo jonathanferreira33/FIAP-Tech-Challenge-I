@@ -1,7 +1,7 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
 public enum UserTypeEnum {
-    kitchen(1), conference(2), delivery(3);
+    customer(1), employee(2);
 
     private final int userT;
 
