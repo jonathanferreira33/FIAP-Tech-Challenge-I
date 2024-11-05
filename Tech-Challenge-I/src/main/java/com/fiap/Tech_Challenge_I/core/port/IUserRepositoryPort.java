@@ -4,5 +4,5 @@ import com.fiap.Tech_Challenge_I.adapter.entity.UserEntity;
 
 public interface IUserRepositoryPort {
     public UserEntity create(UserEntity user);
-    public UserEntity getUserByDoc(String doc);
+    public UserEntity findByDoc(String doc);
 }

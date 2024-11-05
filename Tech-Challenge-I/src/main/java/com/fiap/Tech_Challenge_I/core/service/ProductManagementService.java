@@ -25,8 +25,38 @@ public class ProductManagementService implements IProductManagementServicePort {
     }
 
     @Override
-    public List<ProductResponse> findProductsByCategory(CategoryEnum category) {
+    public List<ProductResponse> findProductsByCategory(int category) {
         var productsEntity = productRepositoryPort.findAllbyCategory(category);
         return ProductConverter.productEntitiesToProducts(productsEntity);
+    }
+
+    @Override
+    public Product findProductById(Integer id) {
+        var productRepository = productRepositoryPort.findById(id);
+
+        if (productRepository.isEmpty())
+            return null;
+
+        var product = productRepository.get();
+
+        return ProductConverter.productEntityToProduct(product);
+    }
+
+    @Override
+    public Product editProduct(Integer id, Product product) {
+
+        var productEdit = findProductById(id);
+        productEdit.setProductName(product.getProductName());
+        productEdit.setCategory(product.getCategory());
+        productEdit.setPrice(product.getPrice());
+        productEdit.setShortDescription(product.getShortDescription());
+
+        var productEntity = productRepositoryPort.editProduct(productEdit);
+        return ProductConverter.productEntityToProduct(productEntity);
+    }
+
+    @Override
+    public void deleteProduct(Integer id) {
+        productRepositoryPort.delete(id);
     }
 }

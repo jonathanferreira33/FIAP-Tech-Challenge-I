@@ -20,10 +20,12 @@ public class RegisterUserController {
         this.userConverter = userConverter;
     }
 
-    @PostMapping
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public UserResponse createUser(@RequestBody UserRequest userRequest) {
+
         var user = registerServiceport.registerUser(UserConverter.userRequestToUser(userRequest));
+
         return UserConverter.userToUserReponse(user);
     }
 }

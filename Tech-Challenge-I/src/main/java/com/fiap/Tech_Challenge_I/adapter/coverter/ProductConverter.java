@@ -12,23 +12,23 @@ import java.util.List;
 @Component
 public class ProductConverter {
     public static ProductResponse productToProductResponse(Product product) {
-        return new ProductResponse(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategory());
+        return new ProductResponse(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategoryCode());
     }
 
     public static Product productRequestToProduct(ProductRequest product) {
-        return new Product(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategory());
+        return new Product(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategoryCode());
     }
 
     public static ProductEntity productToProductEntity(Product product) {
-        return new ProductEntity(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategory());
+        return new ProductEntity(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategoryCode());
     }
 
     public static Product productEntityToProduct(ProductEntity product) {
-        return new Product(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategory());
+        return new Product(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategoryCode());
     }
 
     public static ProductResponse productEntityToProductResponse(ProductEntity product){
-        return new ProductResponse(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategory());
+        return new ProductResponse(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategoryCode());
     }
 
     public static List<ProductResponse> productEntitiesToProducts(List<ProductEntity> productEntities) {

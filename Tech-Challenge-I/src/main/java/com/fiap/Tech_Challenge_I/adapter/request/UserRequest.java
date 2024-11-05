@@ -21,7 +21,7 @@ public class UserRequest {
     }
 
     public void setDoc(String doc) {
-        this.doc = doc;
+        this.doc = doc.replaceAll("[^a-zA-Z0-9]", "");
     }
 
     public String getFirstName() {
