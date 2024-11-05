@@ -36,7 +36,7 @@ public class UserResponse {
     }
 
     public void setDoc(String doc) {
-        this.doc = doc;
+        this.doc = formatDoc(doc);
     }
 
     public int getId() {
@@ -85,5 +85,9 @@ public class UserResponse {
 
     public void setTipoUsuario(UserTypeEnum tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    private String formatDoc(String doc){
+        return doc.substring(0, 3) + ".***.***-" + doc.substring(9, 11);
     }
 }

@@ -29,8 +29,8 @@ public class ProductManagementRepositoryAdapter implements IProductRepositoryPor
     }
 
     @Override
-    public List<ProductEntity> findAllbyCategory(CategoryEnum category) {
-        return productManagementRepository.findByCategory(category);
+    public List<ProductEntity> findAllbyCategory(int category) {
+        return productManagementRepository.findByCategoryCode(category);
     }
 
     @Override
@@ -39,15 +39,14 @@ public class ProductManagementRepositoryAdapter implements IProductRepositoryPor
     }
 
     @Override
-    public ProductEntity EditProduct(Product product) {
-        var producEdit = findById(product.getIdProduct());
-        producEdit.setProductName(product.getProductName());
-        producEdit.setPrice(product.getPrice());
-        producEdit.setShortDescription(product.getShortDescription());
-        producEdit.setCategory(product.getCategory());
+    public ProductEntity editProduct(Product product) {
+        ProductEntity editProduct = productManagementRepository
+                .save(mapper.map(product, ProductEntity.class));
+        return mapper.map(editProduct, ProductEntity.class);
+    }
 
-        ProductEntity newProduct = productManagementRepository
-                .save(mapper.map(producEdit, ProductEntity.class));
-        return mapper.map(newProduct, ProductEntity.class);
+    @Override
+    public void delete(Integer id) {
+        productManagementRepository.deleteById(id);
     }
 }

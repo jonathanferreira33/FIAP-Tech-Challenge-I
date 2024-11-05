@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public interface IProductRepositoryPort {
     public ProductEntity create(ProductEntity product);
-    public List<ProductEntity> findAllbyCategory(CategoryEnum category);
+    public List<ProductEntity> findAllbyCategory(int category);
     public Optional<ProductEntity> findById(Integer id);
-    public ProductEntity EditProduct(Product product);
+    public ProductEntity editProduct(Product product);
+    public void delete(Integer id);
 }

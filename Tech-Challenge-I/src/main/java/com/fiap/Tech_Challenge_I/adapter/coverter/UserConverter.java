@@ -13,7 +13,7 @@ public class UserConverter {
     }
 
     public static UserResponse userToUserReponse(User user){
-        return new UserResponse(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isAdmin(), user.getTipoUsuario(), user.getDoc());
+        return new UserResponse(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isAdmin(), user.getTipoUsuario(), formatDoc(user.getDoc()));
     }
 
     public static UserEntity userToUserEntity (User user) {
@@ -29,5 +29,9 @@ public class UserConverter {
                 user.isAdmin(),
                 user.getTipoUsuario(),
                 user.getDoc());
+    }
+
+    private static String formatDoc(String doc){
+        return doc.substring(0, 3) + ".***.***-" + doc.substring(9, 11);
     }
 }

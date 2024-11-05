@@ -17,6 +17,10 @@ public class RegisterUserService implements IRegisterUserServicePort {
     @Override
     public User registerUser(User user) {
 
+        if (user.getDoc() == null || user.getDoc().length() != 11 || !user.getDoc().matches("\\d+"))
+            throw new IllegalArgumentException("O CPF deve conter exatamente 11 dígitos numéricos.");
+
+
         if(userRepositoryPort.findByDoc(user.getDoc()) != null)
             throw new IllegalArgumentException("Usuário já cadastrado");
 

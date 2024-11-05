@@ -37,5 +37,4 @@ public class OrderRepositoryAdapter implements IOrderRepositoryPort {
     public Optional<OrderEntity> findOrderById(Integer id) {
         return orderRepository.findById(id);
     }
-
 }

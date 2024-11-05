@@ -22,27 +22,32 @@ public class ProductManagementController {
         this.productManagementServicePort = productManagementServicePort;
     }
 
-    @GetMapping
+    @GetMapping("/getallproductscategory")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductResponse> getProductsByCategory(CategoryEnum category){
-        return productManagementServicePort.findProductsByCategory(category);
+    public List<ProductResponse> getProductsByCategory(@RequestParam CategoryEnum category){
+
+        return productManagementServicePort.findProductsByCategory(category.getStep());
     }
 
-    @PutMapping
+    @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ProductResponse editProduct(ProductRequest productRequest)
+    public ProductResponse editProduct( @PathVariable Integer id, @RequestBody ProductRequest productRequest)
     {
-
-        if(productManagementServicePort.findProductById(productRequest.getIdProduct()) == null)
+        var productEdit = productManagementServicePort.findProductById(id);
+        if( productEdit == null)
             throw new IllegalArgumentException("Produto não encontrado");
 
-        var productEdit = productManagementServicePort.editProduct(ProductConverter.productRequestToProduct(productRequest));
-        return ProductConverter.productToProductResponse(productEdit);
+        var product = productManagementServicePort.editProduct(id, ProductConverter.productRequestToProduct(productRequest));
+        return ProductConverter.productToProductResponse(product);
     }
 
-    @DeleteMapping
+    @DeleteMapping("delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public String deleteProdutc() {
+    public String deleteProdutc(@PathVariable Integer id) {
+        if(productManagementServicePort.findProductById(id) == null)
+            throw new IllegalArgumentException("Produto não encontrado");
+
+        productManagementServicePort.deleteProduct(id);
         return "Produto deletado com sucesso";
     }
 }

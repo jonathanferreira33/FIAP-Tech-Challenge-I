@@ -6,17 +6,17 @@ public class Product {
     private String productName;
     private Double price;
     private String shortDescription;
-    private CategoryEnum category;
+    private int categoryCode;
 
     public Product() {
     }
 
-    public Product(int idProduct, String productName, Double price, String shortDescription, CategoryEnum category) {
+    public Product(int idProduct, String productName, Double price, String shortDescription, int categoryCode) {
         this.idProduct = idProduct;
         this.productName = productName;
         this.price = price;
         this.shortDescription = shortDescription;
-        this.category = category;
+        this.categoryCode = categoryCode;
     }
 
     public int getIdProduct() {
@@ -51,11 +51,19 @@ public class Product {
         this.shortDescription = shortDescription;
     }
 
-    public CategoryEnum getCategory() {
-        return category;
+    public int getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setCategory(CategoryEnum category) {
-        this.category = category;
+    public void setCategoryCode(int categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public CategoryEnum getCategory() {
+        return CategoryEnum.fromCategory(this.categoryCode);
+    }
+
+    public void setCategory(CategoryEnum categoryCode) {
+        this.categoryCode = categoryCode.getStep();
     }
 }

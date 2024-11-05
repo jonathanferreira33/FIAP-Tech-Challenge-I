@@ -7,24 +7,24 @@ public class ProductRequest {
     private String productName;
     private Double price;
     private String shortDescription;
-    private CategoryEnum category;
+    private int categoryCode;
 
     public ProductRequest() {
     }
 
-    public ProductRequest(int idProduct, String productName, Double price, String shortDescription, CategoryEnum category) {
+    public ProductRequest(int idProduct, String productName, Double price, String shortDescription, int categoryCode) {
         this.idProduct = idProduct;
         this.productName = productName;
         this.price = price;
         this.shortDescription = shortDescription;
-        this.category = category;
+        this.categoryCode = categoryCode;
     }
 
-    public ProductRequest(String productName, Double price, String shortDescription, CategoryEnum category) {
+    public ProductRequest(String productName, Double price, String shortDescription, int categoryCode) {
         this.productName = productName;
         this.price = price;
         this.shortDescription = shortDescription;
-        this.category = category;
+        this.categoryCode = categoryCode;
     }
 
     public int getIdProduct() {
@@ -59,11 +59,19 @@ public class ProductRequest {
         this.shortDescription = shortDescription;
     }
 
-    public CategoryEnum getCategory() {
-        return category;
+    public int getCategoryCode() {
+        return categoryCode;
     }
 
-    public void setCategory(CategoryEnum category) {
-        this.category = category;
+    public void setCategoryCode(int categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public CategoryEnum getCategory() {
+        return CategoryEnum.fromCategory(this.categoryCode);
+    }
+
+    public void setCategory(CategoryEnum categoryCode) {
+        this.categoryCode = categoryCode.getStep();
     }
 }

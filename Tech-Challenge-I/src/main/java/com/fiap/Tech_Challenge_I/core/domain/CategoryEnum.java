@@ -12,4 +12,13 @@ public enum CategoryEnum {
     public int getStep() {
         return categoryEvent;
     }
+
+    public static CategoryEnum fromCategory(int codigo) {
+        for (CategoryEnum status : CategoryEnum.values()) {
+            if (status.getStep() == codigo) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Código inválido para Status: " + codigo);
+    }
 }

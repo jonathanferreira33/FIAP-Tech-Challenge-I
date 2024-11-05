@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface IProductManagementServicePort {
     Product registerProduct(Product product);
-    List<ProductResponse> findProductsByCategory(CategoryEnum category);
+    List<ProductResponse> findProductsByCategory(int category);
     Product findProductById(Integer id);
-    Product editProduct(Product product);
+    Product editProduct(Integer id, Product product);
+    void deleteProduct(Integer id);
 }
