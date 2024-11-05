@@ -47,7 +47,7 @@ public class ProductManagementService implements IProductManagementServicePort {
 
         var productEdit = findProductById(id);
         productEdit.setProductName(product.getProductName());
-        productEdit.setCategory(product.getCategory());
+        productEdit.setCategoryCode(product.getCategoryCode());
         productEdit.setPrice(product.getPrice());
         productEdit.setShortDescription(product.getShortDescription());
 
