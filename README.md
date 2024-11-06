@@ -19,6 +19,7 @@ sudo apt install openjdk-17-jre-headless  # version 17.0.12+7-1ubuntu2~24.04
 - Instalar
 sudo apt install maven
 - Buildando a imagem
+
 docker build -t apptest .
 
 docker-compose build  
