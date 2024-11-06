@@ -1,12 +1,11 @@
 package com.fiap.Tech_Challenge_I.adapter.entity;
 
 import com.fiap.Tech_Challenge_I.core.domain.CategoryEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "TCDB_PRODUCT")
@@ -20,6 +19,9 @@ public class ProductEntity {
     private String shortDescription;
     private int categoryCode;
 
+    @ManyToMany(mappedBy = "products")
+    private List<OrderEntity> orders;
+
     public ProductEntity() {
     }
 
@@ -29,6 +31,14 @@ public class ProductEntity {
         this.price = price;
         this.shortDescription = shortDescription;
         this.categoryCode = categoryCode;
+    }
+
+    public List<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
     }
 
     public int getIdProduct() {
