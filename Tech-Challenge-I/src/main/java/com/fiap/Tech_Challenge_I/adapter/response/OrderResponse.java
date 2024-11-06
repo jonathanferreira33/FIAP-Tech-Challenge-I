@@ -1,5 +1,6 @@
 package com.fiap.Tech_Challenge_I.adapter.response;
 
+
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
 import lombok.Data;
 
@@ -8,7 +9,6 @@ import java.util.Date;
 @Data
 public class OrderResponse {
     private int idOrder;
-    private UserResponse user;
     private OrderStatusEnum orderStatus;
     private String sandwich;
     private String followUp;
@@ -25,9 +25,8 @@ public class OrderResponse {
         this.idOrder = idOrder;
     }
 
-    public OrderResponse(int idOrder, UserResponse user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
+    public OrderResponse(int idOrder, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
         this.idOrder = idOrder;
-        this.user = user;
         this.orderStatus = orderStatus;
         this.sandwich = sandwich;
         this.followUp = followUp;
@@ -44,14 +43,6 @@ public class OrderResponse {
 
     public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
-    }
-
-    public UserResponse getUser() {
-        return user;
-    }
-
-    public void setUser(UserResponse user) {
-        this.user = user;
     }
 
     public OrderStatusEnum getOrderStatus() {

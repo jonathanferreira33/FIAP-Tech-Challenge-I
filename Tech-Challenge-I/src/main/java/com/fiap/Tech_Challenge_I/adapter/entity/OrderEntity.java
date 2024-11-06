@@ -4,6 +4,7 @@ import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "TCDB_ORDER")
@@ -11,9 +12,7 @@ public class OrderEntity {
     @Id
     @GeneratedValue
     private int idOrder;
-    @OneToOne
-    @JoinColumn(name = "userId")
-    private UserEntity user;
+
     private OrderStatusEnum orderStatus;
     private String sandwich;
     private String followUp;
@@ -23,12 +22,19 @@ public class OrderEntity {
     private Date startDate;
     private Date endDate;
 
+    @ManyToMany
+    @JoinTable(
+            name = "order_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<ProductEntity> products;
+
     public OrderEntity() {
     }
 
-    public OrderEntity(int idOrder, UserEntity user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
+    public OrderEntity(int idOrder, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
         this.idOrder = idOrder;
-        this.user = user;
         this.orderStatus = orderStatus;
         this.sandwich = sandwich;
         this.followUp = followUp;
@@ -39,20 +45,33 @@ public class OrderEntity {
         this.endDate = endDate;
     }
 
+    public OrderEntity(int idOrder, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate, List<ProductEntity> products) {
+        this.idOrder = idOrder;
+        this.orderStatus = orderStatus;
+        this.sandwich = sandwich;
+        this.followUp = followUp;
+        this.snack = snack;
+        this.drink = drink;
+        this.dessert = dessert;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.products = products;
+    }
+
+    public List<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductEntity> products) {
+        this.products = products;
+    }
+
     public int getIdOrder() {
         return idOrder;
     }
 
     public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
     }
 
     public OrderStatusEnum getOrderStatus() {
@@ -62,7 +81,6 @@ public class OrderEntity {
     public void setOrderStatus(OrderStatusEnum orderStatus) {
         this.orderStatus = orderStatus;
     }
-
     public String getSandwich() {
         return sandwich;
     }

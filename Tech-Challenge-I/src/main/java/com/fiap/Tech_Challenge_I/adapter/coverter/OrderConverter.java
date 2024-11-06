@@ -1,14 +1,9 @@
 package com.fiap.Tech_Challenge_I.adapter.coverter;
 
 import com.fiap.Tech_Challenge_I.adapter.entity.OrderEntity;
-//import com.fiap.Tech_Challenge_I.adapter.request.UserRequest;
-//import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
-import com.fiap.Tech_Challenge_I.adapter.entity.UserEntity;
 import com.fiap.Tech_Challenge_I.adapter.request.OrderRequest;
 import com.fiap.Tech_Challenge_I.adapter.response.OrderResponse;
-import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
 import com.fiap.Tech_Challenge_I.core.domain.Order;
-import com.fiap.Tech_Challenge_I.core.domain.User;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -19,7 +14,6 @@ public class OrderConverter {
     public static OrderEntity orderToOrderEntity (Order order) {
         return new OrderEntity(
                 order.getIdOrder(),
-                new UserEntity(order.getUser().getId()),
                 order.getOrderStatus(),
                 order.getSandwich(),
                 order.getFollowUp(),
@@ -27,13 +21,14 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate()
+                order.getEndDate(),
+                ProductConverter.listProductsToProductsEntity(order.getProducts())
         );
     }
 
     public static Order orderEntitytoOrder (OrderEntity order){
-        return new Order(order.getIdOrder(),
-                new User(order.getUser().getId()),
+        return new Order(
+                order.getIdOrder(),
                 order.getOrderStatus(),
                 order.getSandwich(),
                 order.getFollowUp(),
@@ -41,13 +36,14 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate());
+                order.getEndDate(),
+                ProductConverter.listProductsEntityToProduct(order.getProducts())
+        );
     }
 
     public static Order orderRequestToOrder(OrderRequest order){
         return new Order(
                 order.getIdOrder(),
-                new User(order.getUser().getId()),
                 order.getOrderStatus(),
                 order.getSandwich(),
                 order.getFollowUp(),
@@ -55,14 +51,15 @@ public class OrderConverter {
                 order.getDrink(),
                 order.getDessert(),
                 order.getStartDate(),
-                order.getEndDate()
+                order.getEndDate(),
+                ProductConverter.listProductsRequestToListProduct(order.getProducts())
         );
     }
+
 
     public static OrderResponse orderToOrderResponse(Order order){
         return new OrderResponse(
                 order.getIdOrder(),
-                new UserResponse(order.getUser().getId()),
                 order.getOrderStatus(),
                 order.getSandwich(),
                 order.getFollowUp(),
@@ -77,7 +74,6 @@ public class OrderConverter {
     public static OrderResponse orderEntityToOrderResponse(OrderEntity order){
         return new OrderResponse(
                 order.getIdOrder(),
-                new UserResponse(order.getUser().getId()),
                 order.getOrderStatus(),
                 order.getSandwich(),
                 order.getFollowUp(),

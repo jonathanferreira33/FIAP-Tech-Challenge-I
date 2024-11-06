@@ -1,10 +1,10 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Order{
     private int idOrder;
-    private User user;
     private OrderStatusEnum orderStatus;
     private String sandwich;
     private String followUp;
@@ -13,13 +13,13 @@ public class Order{
     private String dessert;
     private Date startDate;
     private Date endDate;
+    private List<Product> products;
 
     public Order() {
     }
 
-    public Order(int idOrder, User user, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate) {
+    public Order(int idOrder, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate, List<Product> products) {
         this.idOrder = idOrder;
-        this.user = user;
         this.orderStatus = orderStatus;
         this.sandwich = sandwich;
         this.followUp = followUp;
@@ -28,6 +28,15 @@ public class Order{
         this.dessert = dessert;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.products = products;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public int getIdOrder() {
@@ -36,14 +45,6 @@ public class Order{
 
     public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public OrderStatusEnum getOrderStatus() {

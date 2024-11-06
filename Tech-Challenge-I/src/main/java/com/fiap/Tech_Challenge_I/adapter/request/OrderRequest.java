@@ -5,6 +5,7 @@ import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class OrderRequest {
@@ -18,6 +19,7 @@ public class OrderRequest {
     private String dessert;
     private Date startDate;
     private Date endDate;
+    private List<ProductRequest> products;
 
     public OrderRequest() {
     }
@@ -37,6 +39,14 @@ public class OrderRequest {
         this.dessert = dessert;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public List<ProductRequest> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductRequest> products) {
+        this.products = products;
     }
 
     public int getIdOrder() {
