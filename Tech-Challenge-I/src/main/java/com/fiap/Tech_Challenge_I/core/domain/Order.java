@@ -6,11 +6,6 @@ import java.util.List;
 public class Order{
     private int idOrder;
     private OrderStatusEnum orderStatus;
-    private String sandwich;
-    private String followUp;
-    private String snack;
-    private String drink;
-    private String dessert;
     private Date startDate;
     private Date endDate;
     private List<Product> products;
@@ -18,14 +13,16 @@ public class Order{
     public Order() {
     }
 
-    public Order(int idOrder, OrderStatusEnum orderStatus, String sandwich, String followUp, String snack, String drink, String dessert, Date startDate, Date endDate, List<Product> products) {
+    public Order(int idOrder, OrderStatusEnum orderStatus, Date startDate, Date endDate, List<Product> products) {
         this.idOrder = idOrder;
         this.orderStatus = orderStatus;
-        this.sandwich = sandwich;
-        this.followUp = followUp;
-        this.snack = snack;
-        this.drink = drink;
-        this.dessert = dessert;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.products = products;
+    }
+
+    public Order(OrderStatusEnum orderStatus, Date startDate, Date endDate, List<Product> products) {
+        this.orderStatus = orderStatus;
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
@@ -53,46 +50,6 @@ public class Order{
 
     public void setOrderStatus(OrderStatusEnum orderStatus) {
         this.orderStatus = orderStatus;
-    }
-
-    public String getSandwich() {
-        return sandwich;
-    }
-
-    public void setSandwich(String sandwich) {
-        this.sandwich = sandwich;
-    }
-
-    public String getFollowUp() {
-        return followUp;
-    }
-
-    public void setFollowUp(String followUp) {
-        this.followUp = followUp;
-    }
-
-    public String getSnack() {
-        return snack;
-    }
-
-    public void setSnack(String snack) {
-        this.snack = snack;
-    }
-
-    public String getDrink() {
-        return drink;
-    }
-
-    public void setDrink(String drink) {
-        this.drink = drink;
-    }
-
-    public String getDessert() {
-        return dessert;
-    }
-
-    public void setDessert(String dessert) {
-        this.dessert = dessert;
     }
 
     public Date getStartDate() {

@@ -13,13 +13,7 @@ import java.util.List;
 public class OrderConverter {
     public static OrderEntity orderToOrderEntity (Order order) {
         return new OrderEntity(
-                order.getIdOrder(),
                 order.getOrderStatus(),
-                order.getSandwich(),
-                order.getFollowUp(),
-                order.getSnack(),
-                order.getDrink(),
-                order.getDessert(),
                 order.getStartDate(),
                 order.getEndDate(),
                 ProductConverter.listProductsToProductsEntity(order.getProducts())
@@ -30,11 +24,6 @@ public class OrderConverter {
         return new Order(
                 order.getIdOrder(),
                 order.getOrderStatus(),
-                order.getSandwich(),
-                order.getFollowUp(),
-                order.getSnack(),
-                order.getDrink(),
-                order.getDessert(),
                 order.getStartDate(),
                 order.getEndDate(),
                 ProductConverter.listProductsEntityToProduct(order.getProducts())
@@ -45,11 +34,6 @@ public class OrderConverter {
         return new Order(
                 order.getIdOrder(),
                 order.getOrderStatus(),
-                order.getSandwich(),
-                order.getFollowUp(),
-                order.getSnack(),
-                order.getDrink(),
-                order.getDessert(),
                 order.getStartDate(),
                 order.getEndDate(),
                 ProductConverter.listProductsRequestToListProduct(order.getProducts())
@@ -61,11 +45,6 @@ public class OrderConverter {
         return new OrderResponse(
                 order.getIdOrder(),
                 order.getOrderStatus(),
-                order.getSandwich(),
-                order.getFollowUp(),
-                order.getSnack(),
-                order.getDrink(),
-                order.getDessert(),
                 order.getStartDate(),
                 order.getEndDate()
         );
@@ -75,11 +54,6 @@ public class OrderConverter {
         return new OrderResponse(
                 order.getIdOrder(),
                 order.getOrderStatus(),
-                order.getSandwich(),
-                order.getFollowUp(),
-                order.getSnack(),
-                order.getDrink(),
-                order.getDessert(),
                 order.getStartDate(),
                 order.getEndDate()
         );
