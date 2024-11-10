@@ -12,18 +12,12 @@ import java.util.List;
 @Component
 public class OrderConverter {
     public static OrderEntity orderToOrderEntity (Order order) {
-        return new OrderEntity(
-                order.getOrderStatus(),
-                order.getStartDate(),
-                order.getEndDate(),
-                ProductConverter.listProductsToProductsEntity(order.getProducts())
-        );
+        return new OrderEntity(order);
     }
 
     public static Order orderEntitytoOrder (OrderEntity order){
         return new Order(
                 order.getIdOrder(),
-                order.getOrderStatus(),
                 order.getStartDate(),
                 order.getEndDate(),
                 ProductConverter.listProductsEntityToProduct(order.getProducts())
@@ -33,7 +27,6 @@ public class OrderConverter {
     public static Order orderRequestToOrder(OrderRequest order){
         return new Order(
                 order.getIdOrder(),
-                order.getOrderStatus(),
                 order.getStartDate(),
                 order.getEndDate(),
                 ProductConverter.listProductsRequestToListProduct(order.getProducts())
