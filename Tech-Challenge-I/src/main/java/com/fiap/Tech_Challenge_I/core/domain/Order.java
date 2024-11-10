@@ -1,11 +1,14 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
+import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.IOrderStatus;
+import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.Incoming;
+
 import java.util.Date;
 import java.util.List;
 
 public class Order{
     private int idOrder;
-    private OrderStatusEnum orderStatus;
+    private IOrderStatus orderStatus;
     private Date startDate;
     private Date endDate;
     private List<Product> products;
@@ -13,16 +16,16 @@ public class Order{
     public Order() {
     }
 
-    public Order(int idOrder, OrderStatusEnum orderStatus, Date startDate, Date endDate, List<Product> products) {
+    public Order(int idOrder, Date startDate, Date endDate, List<Product> products) {
         this.idOrder = idOrder;
-        this.orderStatus = orderStatus;
+        this.orderStatus = new Incoming();
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
     }
 
-    public Order(OrderStatusEnum orderStatus, Date startDate, Date endDate, List<Product> products) {
-        this.orderStatus = orderStatus;
+    public Order( Date startDate, Date endDate, List<Product> products) {
+        this.orderStatus = new Incoming();
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
@@ -44,11 +47,11 @@ public class Order{
         this.idOrder = idOrder;
     }
 
-    public OrderStatusEnum getOrderStatus() {
+    public IOrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatusEnum orderStatus) {
+    public void setOrderStatus(IOrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -66,6 +69,22 @@ public class Order{
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public void incoming() {
+        orderStatus.incoming(this);
+    }
+
+    public void ready(){
+        orderStatus.ready(this);
+    }
+
+    public void verification(){
+        orderStatus.verification(this);
+    }
+
+    public void delivery(){
+        orderStatus.delivery(this);
     }
 }
 
