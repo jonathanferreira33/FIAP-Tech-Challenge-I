@@ -11,7 +11,6 @@ import java.util.List;
 public class OrderRequest {
     private int idOrder;
     private UserResponse user;
-    private OrderStatusEnum orderStatus;
     private Date startDate;
     private Date endDate;
     private List<ProductRequest> products;
@@ -23,9 +22,8 @@ public class OrderRequest {
         this.idOrder = idOrder;
     }
 
-    public OrderRequest(UserResponse user, OrderStatusEnum orderStatus, Date startDate, Date endDate, List<ProductRequest> products) {
+    public OrderRequest(UserResponse user, Date startDate, Date endDate, List<ProductRequest> products) {
         this.user = user;
-        this.orderStatus = orderStatus;
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
@@ -53,14 +51,6 @@ public class OrderRequest {
 
     public void setUser(UserResponse user) {
         this.user = user;
-    }
-
-    public OrderStatusEnum getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatusEnum orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public Date getStartDate() {
