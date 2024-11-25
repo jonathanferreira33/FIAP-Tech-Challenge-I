@@ -13,4 +13,5 @@ public interface IProductRepositoryPort {
     public Optional<ProductEntity> findById(Integer id);
     public ProductEntity editProduct(Product product);
     public void delete(Integer id);
+    public List<ProductEntity> findProductsByOrderId(int idOrder);
 }

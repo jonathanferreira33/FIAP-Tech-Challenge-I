@@ -31,6 +31,14 @@ public class Order{
         this.products = products;
     }
 
+    public Order(int idOrder, IOrderStatus orderStatus, Date startDate, Date endDate, List<Product> products) {
+        this.idOrder = idOrder;
+        this.orderStatus = orderStatus;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.products = products;
+    }
+
     public List<Product> getProducts() {
         return products;
     }

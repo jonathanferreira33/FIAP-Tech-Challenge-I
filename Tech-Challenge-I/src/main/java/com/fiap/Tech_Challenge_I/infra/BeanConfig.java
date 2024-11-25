@@ -27,7 +27,7 @@ public class BeanConfig {
     }
 
     @Bean
-    public IOrderServicePort orderServicePortImpl(IOrderRepositoryPort orderRepositoryPort){
-        return new OrderService(orderRepositoryPort);
+    public IOrderServicePort orderServicePortImpl(IOrderRepositoryPort orderRepositoryPort, IProductManagementServicePort productManagementServicePort){
+        return new OrderService(orderRepositoryPort, productManagementServicePort);
     }
 }

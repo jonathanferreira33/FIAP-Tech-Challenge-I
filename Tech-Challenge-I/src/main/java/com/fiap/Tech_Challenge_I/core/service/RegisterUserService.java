@@ -25,6 +25,7 @@ public class RegisterUserService implements IRegisterUserServicePort {
             throw new IllegalArgumentException("Usuário já cadastrado");
 
         var newUser = userRepositoryPort.create(UserConverter.userToUserEntity(user));
+
         return UserConverter.userEntityToUser(newUser);
     }
 

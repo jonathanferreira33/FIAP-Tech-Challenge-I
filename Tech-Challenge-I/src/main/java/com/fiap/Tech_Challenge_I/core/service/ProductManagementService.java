@@ -25,9 +25,9 @@ public class ProductManagementService implements IProductManagementServicePort {
     }
 
     @Override
-    public List<ProductResponse> findProductsByCategory(int category) {
+    public List<ProductResponse> findProductsByCategory(Integer category) {
         var productsEntity = productRepositoryPort.findAllbyCategory(category);
-        return ProductConverter.productEntitiesToProducts(productsEntity);
+        return productsEntity.stream().map(ProductConverter::productEntityToProductResponse).toList();
     }
 
     @Override
@@ -58,5 +58,14 @@ public class ProductManagementService implements IProductManagementServicePort {
     @Override
     public void deleteProduct(Integer id) {
         productRepositoryPort.delete(id);
+    }
+
+    @Override
+    public List<ProductResponse> findProductsByIdOrder(Integer idOrder) {
+
+        return productRepositoryPort.findProductsByOrderId(idOrder)
+                .stream()
+                .map(ProductConverter::productEntityToProductResponse)
+                .toList();
     }
 }
