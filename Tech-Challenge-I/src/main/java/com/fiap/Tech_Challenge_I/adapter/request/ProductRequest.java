@@ -12,12 +12,8 @@ public class ProductRequest {
     public ProductRequest() {
     }
 
-    public ProductRequest(int idProduct, String productName, Double price, String shortDescription, int categoryCode) {
+    public ProductRequest(int idProduct) {
         this.idProduct = idProduct;
-        this.productName = productName;
-        this.price = price;
-        this.shortDescription = shortDescription;
-        this.categoryCode = categoryCode;
     }
 
     public ProductRequest(String productName, Double price, String shortDescription, int categoryCode) {

@@ -30,37 +30,4 @@ public class ProductConverter {
     public static ProductResponse productEntityToProductResponse(ProductEntity product){
         return new ProductResponse(product.getIdProduct(), product.getProductName(), product.getPrice(), product.getShortDescription(), product.getCategoryCode());
     }
-
-    public static List<ProductResponse> productEntitiesToProducts(List<ProductEntity> productEntities) {
-        List<ProductResponse> products = new ArrayList<ProductResponse>();
-        for(ProductEntity p: productEntities){
-            products.add(productEntityToProductResponse(p));
-        }
-        return products;
-    }
-
-    public static List<Product> listProductsRequestToListProduct(List<ProductRequest> productsR){
-        List<Product> products = new ArrayList<>();
-        for (ProductRequest product: productsR){
-            products.add(productRequestToProduct(product));
-        }
-        return products;
-    }
-
-    public static List<Product> listProductsEntityToProduct(List<ProductEntity> productsR){
-        List<Product> products = new ArrayList<>();
-        for (ProductEntity product: productsR){
-            products.add(productEntityToProduct(product));
-        }
-        return products;
-    }
-
-    public static List<ProductEntity> listProductsToProductsEntity(List<Product> productsR){
-        List<ProductEntity> products = new ArrayList<>();
-        for (Product product: productsR){
-            products.add(productToProductEntity(product));
-        }
-        return products;
-    }
-
 }

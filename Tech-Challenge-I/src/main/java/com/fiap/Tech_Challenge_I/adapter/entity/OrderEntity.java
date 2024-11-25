@@ -47,7 +47,7 @@ public class OrderEntity {
         this.orderStatus = convertStatusToType(order.getOrderStatus());
         this.startDate = order.getStartDate();
         this.endDate = order.getEndDate();
-        this.products = ProductConverter.listProductsToProductsEntity(order.getProducts());
+        this.products = order.getProducts().stream().map(ProductConverter::productToProductEntity).toList();
     }
 
     public OrderEntity(IOrderStatus orderStatus, Date startDate, Date endDate, List<ProductEntity> products) {

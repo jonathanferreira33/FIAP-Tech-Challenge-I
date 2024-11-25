@@ -4,6 +4,11 @@ import com.fiap.Tech_Challenge_I.core.domain.Order;
 
 public class Delivery implements IOrderStatus{
     @Override
+    public void canceled(Order order) {
+        order.setOrderStatus(new Canceled());
+    }
+
+    @Override
     public void incoming(Order order) {
         throw new IllegalArgumentException("Status não permitido");
     }

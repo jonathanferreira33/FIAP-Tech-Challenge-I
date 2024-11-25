@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface IProductManagementServicePort {
     Product registerProduct(Product product);
-    List<ProductResponse> findProductsByCategory(int category);
+    List<ProductResponse> findProductsByCategory(Integer category);
     Product findProductById(Integer id);
     Product editProduct(Integer id, Product product);
     void deleteProduct(Integer id);
+    List<ProductResponse> findProductsByIdOrder(Integer idOrder);
 }

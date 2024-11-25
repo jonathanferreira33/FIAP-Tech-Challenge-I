@@ -9,12 +9,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserRequest {
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
     private boolean admin;
     private UserTypeEnum tipoUsuario;
     private String doc;
+
+    public UserRequest(int id) {
+        this.id = id;
+    }
 
     public String getDoc() {
         return doc;

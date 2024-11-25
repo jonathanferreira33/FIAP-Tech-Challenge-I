@@ -33,6 +33,8 @@ public class ProductManagementRepositoryAdapter implements IProductRepositoryPor
         return productManagementRepository.findByCategoryCode(category);
     }
 
+
+
     @Override
     public Optional<ProductEntity> findById(Integer id) {
         return productManagementRepository.findById(id);
@@ -48,5 +50,10 @@ public class ProductManagementRepositoryAdapter implements IProductRepositoryPor
     @Override
     public void delete(Integer id) {
         productManagementRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ProductEntity> findProductsByOrderId(int idOrder) {
+        return productManagementRepository.findProductsByOrderId(idOrder);
     }
 }

@@ -2,10 +2,10 @@ package com.fiap.Tech_Challenge_I.core.domain.OrderStatus;
 
 import com.fiap.Tech_Challenge_I.core.domain.Order;
 
-public class Ready implements IOrderStatus{
+public class Canceled implements IOrderStatus {
     @Override
     public void canceled(Order order) {
-        order.setOrderStatus(new Canceled());
+        throw new IllegalArgumentException("Pedido já está em cancelado");
     }
 
     @Override
@@ -15,19 +15,17 @@ public class Ready implements IOrderStatus{
 
     @Override
     public void ready(Order order) {
-        throw new IllegalArgumentException("Pedido já está em andamento");
-
+        throw new IllegalArgumentException("Status não permitido");
     }
 
     @Override
     public void verification(Order order) {
-        order.setOrderStatus(new Verification());
+        throw new IllegalArgumentException("Status não permitido");
     }
 
     @Override
     public void delivery(Order order) {
         throw new IllegalArgumentException("Status não permitido");
-
     }
 
     @Override

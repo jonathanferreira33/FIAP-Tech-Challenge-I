@@ -10,22 +10,24 @@ import java.util.List;
 @Data
 public class OrderRequest {
     private int idOrder;
-    private UserResponse user;
+    private UserRequest user;
     private Date startDate;
     private Date endDate;
     private List<ProductRequest> products;
 
+
     public OrderRequest() {
+        this.startDate = new Date();
     }
 
-    public OrderRequest(int idOrder) {
-        this.idOrder = idOrder;
+    public OrderRequest(List<ProductRequest> products) {
+        this.startDate = new Date();
+        this.products = products;
     }
 
-    public OrderRequest(UserResponse user, Date startDate, Date endDate, List<ProductRequest> products) {
+    public OrderRequest(UserRequest user, List<ProductRequest> products) {
         this.user = user;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = new Date();
         this.products = products;
     }
 
@@ -45,11 +47,11 @@ public class OrderRequest {
         this.idOrder = idOrder;
     }
 
-    public UserResponse getUser() {
+    public UserRequest getUser() {
         return user;
     }
 
-    public void setUser(UserResponse user) {
+    public void setUser(UserRequest user) {
         this.user = user;
     }
 
