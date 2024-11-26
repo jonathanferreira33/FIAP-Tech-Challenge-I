@@ -10,5 +10,8 @@ import java.util.List;
 public interface IOrderRepository extends JpaRepository<OrderEntity, Integer> {
 
     @Query("SELECT o FROM OrderEntity o JOIN o.products p WHERE p.idProduct = :idProduct")
-    List<OrderEntity> findOrdersByProductId(@Param("idProduct") int idProduct);
+    List<OrderEntity> findOrdersByProductId(@Param("idProduct") Integer idProduct);
+
+
+    List<OrderEntity> findByUserId(Integer userId);
 }

@@ -6,6 +6,8 @@ import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
 import com.fiap.Tech_Challenge_I.core.domain.User;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class UserConverter {
     public static User userRequestToUser(UserRequest userRequest){
@@ -28,7 +30,11 @@ public class UserConverter {
                 user.getEmail(),
                 user.isAdmin(),
                 user.getTipoUsuario(),
-                user.getDoc());
+                user.getDoc(),
+                user.getOrders() != null ?
+                        user.getOrders().stream().map(OrderConverter::orderEntitytoOrder).toList() :
+                        List.of()
+        );
     }
 
     private static String formatDoc(String doc){

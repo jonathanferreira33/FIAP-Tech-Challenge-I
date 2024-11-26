@@ -10,4 +10,5 @@ public interface IOrderRepositoryPort {
     public List<OrderEntity> findAllOrder();
     public Optional<OrderEntity> findOrderById(Integer id);
     public List<OrderEntity> findOrdersByProductId(Integer idProduct);
+    public List<OrderEntity> findOrdersByUserId(Integer userId);
 }

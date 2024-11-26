@@ -15,6 +15,7 @@ public class OrderResponse {
     private Date startDate;
     private Date endDate;
     private List<ProductResponse> products;
+    private UserResponse userResponse;
 
     public OrderResponse() {
     }
@@ -30,11 +31,12 @@ public class OrderResponse {
         this.endDate = endDate;
     }
 
-    public OrderResponse(int idOrder, IOrderStatus orderStatus, Date startDate, List<ProductResponse> products) {
+    public OrderResponse(int idOrder, IOrderStatus orderStatus, Date startDate, List<ProductResponse> products, UserResponse userResponse) {
         this.idOrder = idOrder;
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
         this.products = products;
+        this.userResponse = userResponse;
     }
 
     public OrderResponse(IOrderStatus orderStatus, Date startDate, Date endDate) {
@@ -90,6 +92,6 @@ public class OrderResponse {
         if (orderStatus instanceof Verification) return OrderStatusEnum.verification;
         if (orderStatus instanceof Delivery) return OrderStatusEnum.delivered;
         if (orderStatus instanceof Completed) return OrderStatusEnum.completed;
-        throw new IllegalArgumentException("Unknown order status type");
+        throw new IllegalArgumentException("Status não encontrado");
     }
 }

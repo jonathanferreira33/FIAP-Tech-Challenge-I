@@ -1,12 +1,11 @@
 package com.fiap.Tech_Challenge_I.adapter.entity;
 
 import com.fiap.Tech_Challenge_I.core.domain.UserTypeEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "TCDB_USER")
@@ -21,6 +20,9 @@ public class UserEntity {
     private boolean admin;
     private UserTypeEnum tipoUsuario;
     private String doc;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderEntity> orders;
 
     public UserEntity() {
     }
@@ -38,7 +40,7 @@ public class UserEntity {
         this.doc = doc;
     }
 
-    public UserEntity(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
+    public UserEntity(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc, List<OrderEntity> orders) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,6 +48,15 @@ public class UserEntity {
         this.admin = admin;
         this.tipoUsuario = tipoUsuario;
         this.doc = doc;
+        this.orders = orders;
+    }
+
+    public List<OrderEntity> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderEntity> orders) {
+        this.orders = orders;
     }
 
     public String getDoc() {

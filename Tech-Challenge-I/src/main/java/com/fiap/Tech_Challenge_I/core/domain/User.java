@@ -1,5 +1,8 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User{
 
     private int id;
@@ -7,8 +10,9 @@ public class User{
     private String lastName;
     private String email;
     private boolean admin;
-    private UserTypeEnum tipoUsuario;
+    private UserTypeEnum userType;
     private String doc;
+    private List<Order> orders;
 
     public User() {
     }
@@ -21,18 +25,29 @@ public class User{
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.admin = false;
         this.doc = doc;
+        this.admin = false;
+        this.userType = UserTypeEnum.customer;
+        this.orders = new ArrayList<>();
     }
 
-    public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
+    public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum userType, String doc, List<Order> orders) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.admin = admin;
-        this.tipoUsuario = tipoUsuario;
+        this.userType = userType;
         this.doc = doc;
+        this.orders = orders;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public String getDoc() {
@@ -84,10 +99,10 @@ public class User{
     }
 
     public UserTypeEnum getTipoUsuario() {
-        return tipoUsuario;
+        return userType;
     }
 
-    public void setTipoUsuario(UserTypeEnum tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setTipoUsuario(UserTypeEnum userType) {
+        this.userType = userType;
     }
 }

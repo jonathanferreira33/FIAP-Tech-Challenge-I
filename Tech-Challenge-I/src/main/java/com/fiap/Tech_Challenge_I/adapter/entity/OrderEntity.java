@@ -1,9 +1,12 @@
 package com.fiap.Tech_Challenge_I.adapter.entity;
 
 import com.fiap.Tech_Challenge_I.adapter.coverter.ProductConverter;
+import com.fiap.Tech_Challenge_I.adapter.coverter.UserConverter;
 import com.fiap.Tech_Challenge_I.core.domain.Order;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.*;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
+import com.fiap.Tech_Challenge_I.core.domain.Product;
+import com.fiap.Tech_Challenge_I.core.domain.User;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -32,6 +35,10 @@ public class OrderEntity {
     )
     private List<ProductEntity> products;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
+
     public OrderEntity() {
     }
 
@@ -42,12 +49,13 @@ public class OrderEntity {
         this.endDate = endDate;
     }
 
-    public OrderEntity(Order order) {
-        this.idOrder = order.getIdOrder();
-        this.orderStatus = convertStatusToType(order.getOrderStatus());
-        this.startDate = order.getStartDate();
-        this.endDate = order.getEndDate();
-        this.products = order.getProducts().stream().map(ProductConverter::productToProductEntity).toList();
+    public OrderEntity(int idOrder, IOrderStatus orderStatus, Date startDate, List<Product> products, User user ) {
+        this.idOrder = idOrder;
+        this.orderStatus = convertStatusToType(orderStatus);
+        this.startDate = startDate;
+        this.endDate = null;
+        this.products = products.stream().map(ProductConverter::productToProductEntity).toList();
+        this.user = UserConverter.userToUserEntity(user);
     }
 
     public OrderEntity(IOrderStatus orderStatus, Date startDate, Date endDate, List<ProductEntity> products) {
@@ -55,6 +63,15 @@ public class OrderEntity {
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
+    }
+
+    public OrderEntity(int idOrder, OrderStatusEnum orderStatus, Date startDate, Date endDate, List<ProductEntity> products, UserEntity user) {
+        this.idOrder = idOrder;
+        this.orderStatus = orderStatus;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.products = products;
+        this.user = user;
     }
 
     private OrderStatusEnum convertStatusToType(IOrderStatus orderStatus) {
