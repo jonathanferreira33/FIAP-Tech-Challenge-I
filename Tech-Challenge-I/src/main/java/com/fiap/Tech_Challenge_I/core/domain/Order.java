@@ -12,6 +12,7 @@ public class Order{
     private Date startDate;
     private Date endDate;
     private List<Product> products;
+    private User user;
 
     public Order() {
     }
@@ -57,6 +58,14 @@ public class Order{
 
     public IOrderStatus getOrderStatus() {
         return orderStatus;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setOrderStatus(IOrderStatus orderStatus) {

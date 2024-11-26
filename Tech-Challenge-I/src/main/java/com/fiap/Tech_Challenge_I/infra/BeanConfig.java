@@ -4,6 +4,7 @@ import com.fiap.Tech_Challenge_I.core.port.*;
 import com.fiap.Tech_Challenge_I.core.service.OrderService;
 import com.fiap.Tech_Challenge_I.core.service.ProductManagementService;
 import com.fiap.Tech_Challenge_I.core.service.RegisterUserService;
+import com.fiap.Tech_Challenge_I.core.service.UserManagementService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,5 +30,10 @@ public class BeanConfig {
     @Bean
     public IOrderServicePort orderServicePortImpl(IOrderRepositoryPort orderRepositoryPort, IProductManagementServicePort productManagementServicePort){
         return new OrderService(orderRepositoryPort, productManagementServicePort);
+    }
+
+    @Bean
+    public IUserManagementServicePort userManagementServicePort(IUserRepositoryPort userRepositoryPort){
+        return new UserManagementService(userRepositoryPort);
     }
 }

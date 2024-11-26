@@ -9,7 +9,6 @@ import com.fiap.Tech_Challenge_I.core.port.IOrderRepositoryPort;
 import com.fiap.Tech_Challenge_I.core.port.IOrderServicePort;
 import com.fiap.Tech_Challenge_I.core.port.IProductManagementServicePort;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService implements IOrderServicePort {
@@ -53,4 +52,13 @@ public class OrderService implements IOrderServicePort {
         return null;
     }
 
+    @Override
+    public List<OrderEntity> findOrdersByUserId(Integer userId) {
+        return orderRepositoryPort.findOrdersByUserId(userId);
+    }
+
+    @Override
+    public List<OrderEntity> findOrdersByProductId(Integer productId){
+        return orderRepositoryPort.findOrdersByProductId(productId);
+    }
 }

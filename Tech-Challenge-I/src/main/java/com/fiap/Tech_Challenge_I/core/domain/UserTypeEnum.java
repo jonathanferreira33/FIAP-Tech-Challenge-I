@@ -1,7 +1,7 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
 public enum UserTypeEnum {
-    kitchen(1), conference(2), delivery(3);
+    customer(0), kitchen(1), conference(2), delivery(3);
 
     private final int userT;
 
@@ -11,5 +11,14 @@ public enum UserTypeEnum {
 
     public int getUserType() {
         return userT;
+    }
+
+    public static UserTypeEnum fromUserType(int userType) {
+        for (UserTypeEnum type : UserTypeEnum.values()) {
+            if (type.getUserType() == userType) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Tipo usuario invalido: " + userType);
     }
 }

@@ -37,4 +37,14 @@ public class UserRepositoryAdapter implements IUserRepositoryPort {
 
         return mapper.map(userMatch, UserEntity.class);
     }
+
+    @Override
+    public UserEntity findById(Integer id) {
+        Optional<UserEntity> userMatch =  userRepository.findById(id);
+
+        if(userMatch.isPresent())
+            return userMatch.get();
+
+        throw new RuntimeException("User not found");
+    }
 }

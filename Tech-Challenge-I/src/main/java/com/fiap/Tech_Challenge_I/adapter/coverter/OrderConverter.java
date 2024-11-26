@@ -9,7 +9,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderConverter {
     public static OrderEntity orderToOrderEntity (Order order) {
-        return new OrderEntity(order);
+        return new OrderEntity(
+                order.getIdOrder(),
+                order.getOrderStatus(),
+                order.getStartDate(),
+                order.getProducts(),
+                order.getUser()
+        );
     }
 
     public static Order orderEntitytoOrder (OrderEntity order){
@@ -35,7 +41,8 @@ public class OrderConverter {
                 order.getIdOrder(),
                 order.getOrderStatus(),
                 order.getStartDate(),
-                order.getProducts().stream().map(ProductConverter::productToProductResponse).toList()
+                order.getProducts().stream().map(ProductConverter::productToProductResponse).toList(),
+                UserConverter.userToUserReponse(order.getUser())
         );
     }
 
