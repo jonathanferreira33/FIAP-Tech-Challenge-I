@@ -3,21 +3,21 @@ package com.fiap.Tech_Challenge_I.core.domain;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.IOrderStatus;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.Incoming;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Order{
     private int idOrder;
     private IOrderStatus orderStatus;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime  endDate;
     private List<Product> products;
     private User user;
 
     public Order() {
     }
 
-    public Order(int idOrder, Date startDate, Date endDate, List<Product> products) {
+    public Order(int idOrder, LocalDateTime startDate, LocalDateTime endDate, List<Product> products) {
         this.idOrder = idOrder;
         this.orderStatus = new Incoming();
         this.startDate = startDate;
@@ -25,14 +25,14 @@ public class Order{
         this.products = products;
     }
 
-    public Order( Date startDate, Date endDate, List<Product> products) {
+    public Order(LocalDateTime startDate, LocalDateTime endDate, List<Product> products) {
         this.orderStatus = new Incoming();
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
     }
 
-    public Order(int idOrder, IOrderStatus orderStatus, Date startDate, Date endDate, List<Product> products) {
+    public Order(int idOrder, IOrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endDate, List<Product> products) {
         this.idOrder = idOrder;
         this.orderStatus = orderStatus;
         this.startDate = startDate;
@@ -72,19 +72,19 @@ public class Order{
         this.orderStatus = orderStatus;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
