@@ -1,6 +1,7 @@
 package com.fiap.Tech_Challenge_I.core.service;
 
 import com.fiap.Tech_Challenge_I.adapter.coverter.PaymentConverter;
+import com.fiap.Tech_Challenge_I.core.domain.Order;
 import com.fiap.Tech_Challenge_I.core.domain.Payment;
 import com.fiap.Tech_Challenge_I.core.domain.PaymentStatus;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentGateway;
@@ -22,8 +23,8 @@ public class PaymentService implements IPaymentServicePort {
     }
 
     @Override
-    public Payment processPayment(String orderId, BigDecimal amount) {
-        Payment payment = new Payment(null, orderId, amount, PaymentStatus.PENDING);
+    public Payment processPayment(Order order, BigDecimal amount) {
+        Payment payment = new Payment(null, order, amount, PaymentStatus.PENDING);
         paymentRepository.create(PaymentConverter.paymentToPaymentEntity(payment));
 
         boolean paymentResult = paymentGateway.process(amount);

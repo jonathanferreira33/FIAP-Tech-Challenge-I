@@ -5,6 +5,10 @@ import com.fiap.Tech_Challenge_I.core.domain.Payment;
 
 public class PaymentConverter {
     public static PaymentEntity paymentToPaymentEntity (Payment payment){
-        return new PaymentEntity();
+        return new PaymentEntity(
+                OrderConverter.orderToOrderEntity(payment.getOrder()),
+                payment.getAmount(),
+                payment.getStartDate()
+        );
     }
 }

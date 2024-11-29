@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Payment {
-    private String id;
-    private String orderId;
+    private Integer id;
+    private Order order;
     private BigDecimal amount;
     private PaymentStatus status;
     private LocalDateTime startDate;
@@ -14,28 +14,28 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(String id, String orderId, BigDecimal amount, PaymentStatus status) {
+    public Payment(Integer id, Order order, BigDecimal amount, PaymentStatus status) {
         this.id = id;
-        this.orderId = orderId;
+        this.order = order;
         this.amount = amount;
         this.status = status;
         this.startDate = LocalDateTime.now();
     }
 
-    public String getId() {
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
     }
 
     public BigDecimal getAmount() {

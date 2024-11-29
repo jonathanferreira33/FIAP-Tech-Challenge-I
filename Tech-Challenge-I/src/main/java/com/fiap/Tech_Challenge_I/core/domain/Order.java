@@ -13,6 +13,7 @@ public class Order{
     private LocalDateTime  endDate;
     private List<Product> products;
     private User user;
+    private Payment payment;
 
     public Order() {
     }
@@ -38,6 +39,14 @@ public class Order{
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public List<Product> getProducts() {

@@ -22,4 +22,15 @@ public class PaymentEntity {
     private PaymentStatus status;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+
+    public PaymentEntity() {
+        this.status = PaymentStatus.PENDING;
+    }
+
+    public PaymentEntity(OrderEntity order, BigDecimal amount, LocalDateTime startDate) {
+        this.order = order;
+        this.amount = amount;
+        this.startDate = startDate;
+        this.status = PaymentStatus.PENDING;
+    }
 }
