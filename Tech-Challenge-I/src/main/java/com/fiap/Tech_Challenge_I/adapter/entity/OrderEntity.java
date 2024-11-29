@@ -9,6 +9,7 @@ import com.fiap.Tech_Challenge_I.core.domain.Product;
 import com.fiap.Tech_Challenge_I.core.domain.User;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,8 +25,8 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     private OrderStatusEnum orderStatus;
 
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     @ManyToMany
     @JoinTable(
@@ -39,17 +40,21 @@ public class OrderEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "idPayment")
+    private PaymentEntity payment;
+
     public OrderEntity() {
     }
 
-    public OrderEntity(int idOrder, IOrderStatus orderStatus, Date startDate, Date endDate) {
+    public OrderEntity(int idOrder, IOrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endDate) {
         this.idOrder = idOrder;
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public OrderEntity(int idOrder, IOrderStatus orderStatus, Date startDate, List<Product> products, User user ) {
+    public OrderEntity(int idOrder, IOrderStatus orderStatus, LocalDateTime startDate, List<Product> products, User user ) {
         this.idOrder = idOrder;
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
@@ -58,20 +63,40 @@ public class OrderEntity {
         this.user = UserConverter.userToUserEntity(user);
     }
 
-    public OrderEntity(IOrderStatus orderStatus, Date startDate, Date endDate, List<ProductEntity> products) {
+    public OrderEntity(IOrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endDate, List<ProductEntity> products) {
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
     }
 
-    public OrderEntity(int idOrder, OrderStatusEnum orderStatus, Date startDate, Date endDate, List<ProductEntity> products, UserEntity user) {
+    public OrderEntity(int idOrder, OrderStatusEnum orderStatus, LocalDateTime startDate, LocalDateTime endDate, List<ProductEntity> products, UserEntity user) {
         this.idOrder = idOrder;
         this.orderStatus = orderStatus;
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
         this.user = user;
+    }
+
+    public void setOrderStatus(OrderStatusEnum orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public PaymentEntity getPayment() {
+        return payment;
+    }
+
+    public void setPayment(PaymentEntity payment) {
+        this.payment = payment;
     }
 
     private OrderStatusEnum convertStatusToType(IOrderStatus orderStatus) {
@@ -118,19 +143,19 @@ public class OrderEntity {
         this.orderStatus = convertStatusToType(orderStatus);
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 

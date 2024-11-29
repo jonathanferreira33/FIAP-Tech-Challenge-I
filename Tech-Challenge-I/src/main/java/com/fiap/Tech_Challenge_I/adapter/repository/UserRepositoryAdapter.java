@@ -45,6 +45,6 @@ public class UserRepositoryAdapter implements IUserRepositoryPort {
         if(userMatch.isPresent())
             return userMatch.get();
 
-        throw new RuntimeException("User not found");
+        throw new RuntimeException("User não encontrado");
     }
 }

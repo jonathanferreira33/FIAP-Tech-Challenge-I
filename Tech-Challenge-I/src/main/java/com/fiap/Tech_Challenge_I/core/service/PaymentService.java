@@ -6,9 +6,11 @@ import com.fiap.Tech_Challenge_I.core.domain.PaymentStatus;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentGateway;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentRepositoryPort;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentServicePort;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
+@Service
 public class PaymentService implements IPaymentServicePort {
 
     private final IPaymentRepositoryPort paymentRepository;
@@ -30,7 +32,6 @@ public class PaymentService implements IPaymentServicePort {
             payment.setStatus(PaymentStatus.SUCCESS);
         else
             payment.setStatus(PaymentStatus.FAILED);
-
 
         /*paymentRepository.update(payment);*/
         return payment;
