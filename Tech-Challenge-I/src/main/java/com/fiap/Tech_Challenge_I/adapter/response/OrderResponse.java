@@ -5,6 +5,7 @@ import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.*;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +13,8 @@ import java.util.List;
 public class OrderResponse {
     private int idOrder;
     private OrderStatusEnum orderStatus;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private List<ProductResponse> products;
     private UserResponse userResponse;
 
@@ -24,14 +25,14 @@ public class OrderResponse {
         this.idOrder = idOrder;
     }
 
-    public OrderResponse(int idOrder, IOrderStatus orderStatus, Date startDate, Date endDate) {
+    public OrderResponse(int idOrder, IOrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endDate) {
         this.idOrder = idOrder;
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public OrderResponse(int idOrder, IOrderStatus orderStatus, Date startDate, List<ProductResponse> products, UserResponse userResponse) {
+    public OrderResponse(int idOrder, IOrderStatus orderStatus, LocalDateTime startDate, List<ProductResponse> products, UserResponse userResponse) {
         this.idOrder = idOrder;
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
@@ -39,7 +40,7 @@ public class OrderResponse {
         this.userResponse = userResponse;
     }
 
-    public OrderResponse(IOrderStatus orderStatus, Date startDate, Date endDate) {
+    public OrderResponse(IOrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endDate) {
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
         this.endDate = endDate;
@@ -69,19 +70,19 @@ public class OrderResponse {
         this.orderStatus = convertStatusToType(orderStatus);
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
