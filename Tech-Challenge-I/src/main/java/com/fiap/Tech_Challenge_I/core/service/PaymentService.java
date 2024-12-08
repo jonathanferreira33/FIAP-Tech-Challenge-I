@@ -1,40 +1,55 @@
 package com.fiap.Tech_Challenge_I.core.service;
 
+import com.fiap.Tech_Challenge_I.adapter.coverter.OrderConverter;
 import com.fiap.Tech_Challenge_I.adapter.coverter.PaymentConverter;
 import com.fiap.Tech_Challenge_I.core.domain.Order;
 import com.fiap.Tech_Challenge_I.core.domain.Payment;
 import com.fiap.Tech_Challenge_I.core.domain.PaymentStatus;
+import com.fiap.Tech_Challenge_I.core.port.IOrderServicePort;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentGateway;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentRepositoryPort;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentServicePort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Service
 public class PaymentService implements IPaymentServicePort {
 
     private final IPaymentRepositoryPort paymentRepository;
     private final IPaymentGateway paymentGateway;
+    private final IOrderServicePort orderServicePort;
 
-    public PaymentService(IPaymentRepositoryPort paymentRepository, IPaymentGateway paymentGateway) {
+    public PaymentService(IPaymentRepositoryPort paymentRepository, IPaymentGateway paymentGateway, IOrderServicePort orderServicePort) {
         this.paymentRepository = paymentRepository;
         this.paymentGateway = paymentGateway;
+        this.orderServicePort = orderServicePort;
     }
 
     @Override
-    public Payment processPayment(Order order, BigDecimal amount) {
-        Payment payment = new Payment(null, order, amount, PaymentStatus.PENDING);
-        paymentRepository.create(PaymentConverter.paymentToPaymentEntity(payment));
+    public Payment processPayment(int orderId, BigDecimal amount) {
 
-        boolean paymentResult = paymentGateway.process(amount);
+        var order = orderServicePort.findOrderById(orderId);
+        var newPayment = new Payment(order, amount, PaymentStatus.PENDING);
+
+        Payment payment = PaymentConverter
+                .paymentEntityToPayment(paymentRepository
+                        .create(PaymentConverter.paymentToPaymentEntity(newPayment)));
+
+        order.setPayment(payment);
+        orderServicePort.update(OrderConverter.orderToOrderEntity(order));
+
+        boolean paymentResult = paymentGateway.process(payment);
 
         if (paymentResult)
             payment.setStatus(PaymentStatus.SUCCESS);
         else
             payment.setStatus(PaymentStatus.FAILED);
 
-        /*paymentRepository.update(payment);*/
+        payment.setEndDate(LocalDateTime.now());
+        paymentRepository.update(PaymentConverter.paymentToPaymentEntity(payment));
+
         return payment;
     }
 }

@@ -9,6 +9,8 @@ public interface IOrderServicePort {
     Order registerOrder(Order order);
     List<Order> findAllOrders();
     Order findOrderById(Integer id);
+    OrderEntity findOrderEntityById(Integer id);
     List<OrderEntity> findOrdersByUserId(Integer userId);
     List<OrderEntity> findOrdersByProductId(Integer productId);
+    void update(OrderEntity order);
 }

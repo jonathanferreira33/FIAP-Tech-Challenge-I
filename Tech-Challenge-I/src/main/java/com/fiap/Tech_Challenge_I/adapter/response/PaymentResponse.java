@@ -1,50 +1,46 @@
-package com.fiap.Tech_Challenge_I.core.domain;
+package com.fiap.Tech_Challenge_I.adapter.response;
+
+import com.fiap.Tech_Challenge_I.core.domain.Order;
+import com.fiap.Tech_Challenge_I.core.domain.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Payment {
-    private int id;
-    private Order order;
+public class PaymentResponse {
+
+    private Integer id;
+    private Integer orderId;
     private BigDecimal amount;
     private PaymentStatus status;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
-
-    public Payment() {
-    }
-
-    public Payment(Order order, BigDecimal amount, PaymentStatus status) {
+    public PaymentResponse(Integer id, LocalDateTime endDate, LocalDateTime startDate, PaymentStatus status, BigDecimal amount, Integer orderId) {
         this.id = id;
-        this.order = order;
-        this.amount = amount;
+        this.endDate = endDate;
+        this.startDate = startDate;
         this.status = status;
-        this.startDate = LocalDateTime.now();
-    }
-
-    public Payment(int id, Order order, BigDecimal amount, PaymentStatus status, LocalDateTime startDate) {
-        this.id = id;
-        this.order = order;
         this.amount = amount;
-        this.status = status;
-        this.startDate = LocalDateTime.now();
+        this.orderId = orderId;
     }
 
-    public Order getOrder() {
-        return order;
+    public PaymentResponse() {
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public BigDecimal getAmount() {

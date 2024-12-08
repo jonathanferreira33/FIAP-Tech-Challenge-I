@@ -33,4 +33,60 @@ public class PaymentEntity {
         this.startDate = startDate;
         this.status = PaymentStatus.PENDING;
     }
+
+    public PaymentEntity(OrderEntity order, BigDecimal amount, LocalDateTime startDate, PaymentStatus status) {
+        this.order = order;
+        this.amount = amount;
+        this.startDate = startDate;
+        this.status = status;
+        this.endDate = LocalDateTime.now();
+    }
+
+    public int getIdPayment() {
+        return idPayment;
+    }
+
+    public void setIdPayment(int idPayment) {
+        this.idPayment = idPayment;
+    }
+
+    public OrderEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderEntity order) {
+        this.order = order;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public PaymentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PaymentStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
+    }
 }

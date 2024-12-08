@@ -47,4 +47,9 @@ public class OrderRepositoryAdapter implements IOrderRepositoryPort {
     public List<OrderEntity> findOrdersByUserId(Integer userId) {
         return orderRepository.findByUserId(userId);
     }
+
+    @Override
+    public void update(OrderEntity order) {
+        orderRepository.save(order);
+    }
 }

@@ -36,8 +36,8 @@ public class BeanConfig {
     }
 
     @Bean
-    public IPaymentServicePort paymentServicePort(IPaymentRepositoryPort paymentRepositoryPort, IPaymentGateway paymentGateway) {
-        return new PaymentService(paymentRepositoryPort, paymentGateway);
+    public IPaymentServicePort paymentServicePort(IPaymentRepositoryPort paymentRepositoryPort, IPaymentGateway paymentGateway, IOrderServicePort orderServicePort) {
+        return new PaymentService(paymentRepositoryPort, paymentGateway, orderServicePort);
     }
 
     @Bean

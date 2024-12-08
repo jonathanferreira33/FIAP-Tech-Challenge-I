@@ -44,12 +44,16 @@ public class OrderService implements IOrderServicePort {
 
     @Override
     public Order findOrderById(Integer id) {
-        var orderE = orderRepositoryPort.findOrderById(id);
+        var orderE = orderRepositoryPort.findOrderById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
 
-        if(orderE.isPresent())
-            return OrderConverter.orderEntitytoOrder(orderE.get());
+        return OrderConverter.orderEntitytoOrder(orderE);
+    }
 
-        return null;
+    @Override
+    public OrderEntity findOrderEntityById(Integer id) {
+        return orderRepositoryPort.findOrderById(id)
+                .orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
     }
 
     @Override
@@ -60,5 +64,10 @@ public class OrderService implements IOrderServicePort {
     @Override
     public List<OrderEntity> findOrdersByProductId(Integer productId){
         return orderRepositoryPort.findOrdersByProductId(productId);
+    }
+
+    @Override
+    public void update(OrderEntity order) {
+        orderRepositoryPort.update(order);
     }
 }

@@ -1,7 +1,8 @@
 package com.fiap.Tech_Challenge_I.core.port;
 
-import java.math.BigDecimal;
+import com.fiap.Tech_Challenge_I.core.domain.Payment;
+
 
 public interface IPaymentGateway {
-    boolean process(BigDecimal amount);
+    boolean process(Payment amount);
 }
