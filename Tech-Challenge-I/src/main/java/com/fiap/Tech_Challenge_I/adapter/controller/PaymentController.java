@@ -3,16 +3,13 @@ package com.fiap.Tech_Challenge_I.adapter.controller;
 import com.fiap.Tech_Challenge_I.adapter.coverter.PaymentConverter;
 import com.fiap.Tech_Challenge_I.adapter.factory.ApiResponseFactory;
 import com.fiap.Tech_Challenge_I.adapter.response.ApiResponse;
-import com.fiap.Tech_Challenge_I.adapter.response.OrderResponse;
 import com.fiap.Tech_Challenge_I.adapter.response.PaymentResponse;
-import com.fiap.Tech_Challenge_I.core.domain.PaymentStatus;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentServicePort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/payment")
