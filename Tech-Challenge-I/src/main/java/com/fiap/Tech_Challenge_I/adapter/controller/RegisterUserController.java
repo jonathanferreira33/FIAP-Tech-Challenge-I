@@ -10,6 +10,7 @@ import com.fiap.Tech_Challenge_I.core.port.IRegisterUserServicePort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -29,9 +30,10 @@ public class RegisterUserController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody UserRequest userRequest) {
 
-        var user = registerServiceport.registerUser(UserConverter.userRequestToUser(userRequest));
+        var user = registerServiceport.registerUser(UserConverter.userRequestToUserCreated(userRequest));
+        user.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(ApiResponseFactory.success(UserConverter.userToUserReponse(user)));
+                    .body(ApiResponseFactory.success(UserConverter.userToUserReponseCreated(user)));
     }
 }

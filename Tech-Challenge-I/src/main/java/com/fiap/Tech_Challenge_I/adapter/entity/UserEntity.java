@@ -1,11 +1,12 @@
 package com.fiap.Tech_Challenge_I.adapter.entity;
 
+import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
 import com.fiap.Tech_Challenge_I.core.domain.UserTypeEnum;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "TCDB_USER")
@@ -20,6 +21,15 @@ public class UserEntity {
     private boolean admin;
     private UserTypeEnum tipoUsuario;
     private String doc;
+
+    private String username;
+    private String password;
+    private boolean enabled;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<UserRoleEnum> role;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderEntity> orders;
@@ -49,6 +59,44 @@ public class UserEntity {
         this.tipoUsuario = tipoUsuario;
         this.doc = doc;
         this.orders = orders;
+    }
+
+    public UserEntity(String password, String login) {
+        this.password = password;
+        this.username = login;
+    }
+
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<UserRoleEnum> getRole() {
+        return role;
+    }
+
+    public void setRole(Set<UserRoleEnum> role) {
+        this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<OrderEntity> getOrders() {

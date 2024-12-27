@@ -44,4 +44,9 @@ public class BeanConfig {
     public IPaymentGateway paymentGateway(){
         return new PaymentGateway();
     }
+
+    @Bean
+    public ITokenServicePort tokenServicePort() {
+        return new TokenService();
+    }
 }

@@ -1,9 +1,12 @@
 package com.fiap.Tech_Challenge_I.adapter.request;
 
+import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
 import com.fiap.Tech_Challenge_I.core.domain.UserTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collections;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,8 +20,48 @@ public class UserRequest {
     private UserTypeEnum tipoUsuario;
     private String doc;
 
+    private String login;
+    private String password;
+    private UserRoleEnum role;
+
     public UserRequest(int id) {
         this.id = id;
+    }
+
+    public UserRequest(String login, String password) {
+        this.login = login;
+        this.password = password;
+        this.role = UserRoleEnum.customer;
+    }
+
+    public UserRequest(String login, String password, String role) {
+        this.login = login;
+        this.password = password;
+        this.role = UserRoleEnum.valueOf(role);
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserRoleEnum getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoleEnum role) {
+        this.role = role;
     }
 
     public int getId() {

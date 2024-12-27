@@ -16,4 +16,9 @@ public class UserManagementService implements IUserManagementServicePort {
     public User findUserById(Integer id) {
         return UserConverter.userEntityToUser(userRepositoryPort.findById(id));
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return UserConverter.userEntityToUser(userRepositoryPort.findByUsername(username));
+    }
 }

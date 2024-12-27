@@ -1,7 +1,11 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
+import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class User{
 
@@ -14,11 +18,29 @@ public class User{
     private String doc;
     private List<Order> orders;
 
+    private String userName;
+    private String password;
+    private Set<UserRoleEnum> role;
+    private boolean enabled;
+
+
     public User() {
     }
 
     public User(int id) {
         this.id = id;
+    }
+
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+        this.role = Collections.singleton(UserRoleEnum.guest);
+    }
+
+    public User(String userName, String password, UserRoleEnum role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = Collections.singleton(role);
     }
 
     public User(String firstName, String lastName, String email, String doc) {
@@ -29,6 +51,7 @@ public class User{
         this.admin = false;
         this.userType = UserTypeEnum.customer;
         this.orders = new ArrayList<>();
+        this.role = Collections.singleton(UserRoleEnum.guest);
     }
 
     public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum userType, String doc, List<Order> orders) {
@@ -40,6 +63,39 @@ public class User{
         this.userType = userType;
         this.doc = doc;
         this.orders = orders;
+        this.role = Collections.singleton(UserRoleEnum.guest);
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<UserRoleEnum> getRoles() {
+        return role;
+    }
+
+    public void setRoles(Set<UserRoleEnum> roles) {
+        this.role = roles;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Order> getOrders() {

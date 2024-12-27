@@ -10,12 +10,24 @@ import java.util.List;
 
 @Component
 public class UserConverter {
+    public static User userRequestToUserCreated(UserRequest userRequest){
+        return new User(userRequest.getLogin(), userRequest.getPassword());
+    }
+
     public static User userRequestToUser(UserRequest userRequest){
         return new User(userRequest.getFirstName(), userRequest.getLastName(), userRequest.getEmail(), userRequest.getDoc());
     }
 
+    public static UserResponse userToUserReponseCreated(User user){
+        return new UserResponse(user.getId(), user.getUserName());
+    }
+
     public static UserResponse userToUserReponse(User user){
         return new UserResponse(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.isAdmin(), user.getTipoUsuario(), formatDoc(user.getDoc()));
+    }
+
+    public static UserEntity userToUserEntityCreated(User user) {
+        return new UserEntity(user.getUserName(), user.getPassword());
     }
 
     public static UserEntity userToUserEntity (User user) {
