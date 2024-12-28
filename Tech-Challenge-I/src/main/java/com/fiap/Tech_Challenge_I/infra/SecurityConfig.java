@@ -34,6 +34,7 @@ public class SecurityConfig {
                     auth.requestMatchers("auth/**").permitAll();
                     auth.requestMatchers("api/registeruser").permitAll();
                     auth.requestMatchers("api/registerorder/**").permitAll();
+                    auth.requestMatchers("api/registerproduct/**").permitAll();
                     auth.requestMatchers("/h2-console/**").permitAll();
                     auth.anyRequest().authenticated();                         // Exige autenticação para outros endpoints
                 })

@@ -27,7 +27,7 @@ public class UserEntity {
     private boolean enabled;
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<OrderEntity> orders;
 
     public UserEntity() {

@@ -36,7 +36,7 @@ public class OrderEntity {
     )
     private List<ProductEntity> products;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 

@@ -49,7 +49,7 @@ public class TokenService implements ITokenServicePort {
 
     private Date generateExpirationDate() {
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expiration = now.plusMinutes(120);
+        LocalDateTime expiration = now.plusMinutes(600);
         return Date.from(expiration.atZone(ZoneId.systemDefault()).toInstant());
     }
 }

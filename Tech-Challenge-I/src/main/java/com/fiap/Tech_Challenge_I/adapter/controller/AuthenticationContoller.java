@@ -4,6 +4,7 @@ import com.fiap.Tech_Challenge_I.adapter.coverter.CustomUserDetails;
 import com.fiap.Tech_Challenge_I.adapter.coverter.UserConverter;
 import com.fiap.Tech_Challenge_I.adapter.factory.ApiResponseFactory;
 import com.fiap.Tech_Challenge_I.adapter.request.AuthenticationRequest;
+import com.fiap.Tech_Challenge_I.adapter.response.TokenResponse;
 import com.fiap.Tech_Challenge_I.core.domain.User;
 import com.fiap.Tech_Challenge_I.core.port.ITokenServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class AuthenticationContoller {
             var token = tokenServicePort.generateToken(UserConverter.ObjectToUser((CustomUserDetails) auth.getPrincipal()));
 
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(ApiResponseFactory.success(token));
+                    .body(ApiResponseFactory.success(new TokenResponse(token)));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
