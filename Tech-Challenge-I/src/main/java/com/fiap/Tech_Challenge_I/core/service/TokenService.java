@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.*;
+import java.util.Date;
 
 public class TokenService implements ITokenServicePort {
 
@@ -49,7 +47,9 @@ public class TokenService implements ITokenServicePort {
         }
     }
 
-    private Instant generateExpirationDate() {
-        return LocalDate.now().plus(Duration.ofMinutes(120)).atStartOfDay(ZoneId.systemDefault()).toInstant();
+    private Date generateExpirationDate() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expiration = now.plusMinutes(120);
+        return Date.from(expiration.atZone(ZoneId.systemDefault()).toInstant());
     }
 }

@@ -27,7 +27,12 @@ public class UserConverter {
     }
 
     public static UserEntity userToUserEntityCreated(User user) {
-        return new UserEntity(user.getUserName(), user.getPassword());
+        return new UserEntity(
+                user.getUserName(),
+                true,
+                user.getPassword(),
+                user.getRole()
+        );
     }
 
     public static UserEntity userToUserEntity (User user) {
@@ -43,9 +48,22 @@ public class UserConverter {
                 user.isAdmin(),
                 user.getTipoUsuario(),
                 user.getDoc(),
+                user.getRole(),
+                user.getUsername(),
+                user.getPassword(),
+                user.isEnabled(),
                 user.getOrders() != null ?
                         user.getOrders().stream().map(OrderConverter::orderEntitytoOrder).toList() :
                         List.of()
+        );
+    }
+
+    public static User ObjectToUser (CustomUserDetails  customUserDetails){
+        return new User(
+                customUserDetails.getUsername(),
+                customUserDetails.getPassword(),
+                customUserDetails.getAuthorities().toString(),
+                customUserDetails.isEnabled()
         );
     }
 

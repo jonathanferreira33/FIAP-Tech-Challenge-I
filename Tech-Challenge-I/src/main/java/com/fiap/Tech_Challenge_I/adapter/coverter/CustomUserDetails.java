@@ -1,14 +1,12 @@
 package com.fiap.Tech_Challenge_I.adapter.coverter;
 
-import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
 import com.fiap.Tech_Challenge_I.core.domain.User;
-import com.fiap.Tech_Challenge_I.core.domain.UserTypeEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
     private final User user;
@@ -19,10 +17,14 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
-                .collect(Collectors.toSet());
+        switch (user.getRole().toLowerCase()) {
+            case "manager": return List.of(new SimpleGrantedAuthority("ROLE_MANAGER"),new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+            case "admin": return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+            case "customer": return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+            case "delivery": return List.of(new SimpleGrantedAuthority("ROLE_DELIVERY"), new SimpleGrantedAuthority("ROLE_USER"));
+            case "guest": return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+            default: return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        }
     }
 
     @Override

@@ -25,11 +25,7 @@ public class UserEntity {
     private String username;
     private String password;
     private boolean enabled;
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    private Set<UserRoleEnum> role;
-
+    private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderEntity> orders;
@@ -61,9 +57,11 @@ public class UserEntity {
         this.orders = orders;
     }
 
-    public UserEntity(String password, String login) {
+    public UserEntity(String username, boolean enabled, String password, String role) {
+        this.username = username;
+        this.enabled = enabled;
         this.password = password;
-        this.username = login;
+        this.role = role;
     }
 
 
@@ -75,11 +73,11 @@ public class UserEntity {
         this.enabled = enabled;
     }
 
-    public Set<UserRoleEnum> getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Set<UserRoleEnum> role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

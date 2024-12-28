@@ -1,5 +1,7 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
+import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.*;
+import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.Delivery;
 import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
 
 import java.util.ArrayList;
@@ -20,9 +22,8 @@ public class User{
 
     private String userName;
     private String password;
-    private Set<UserRoleEnum> role;
+    private String role;
     private boolean enabled;
-
 
     public User() {
     }
@@ -34,13 +35,20 @@ public class User{
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
-        this.role = Collections.singleton(UserRoleEnum.guest);
+        this.role = UserRoleEnum.convertUserRoleEnumToSring(UserRoleEnum.guest);
+    }
+
+    public User(String userName, String password, String role, Boolean enabled) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.enabled = enabled;
     }
 
     public User(String userName, String password, UserRoleEnum role) {
         this.userName = userName;
         this.password = password;
-        this.role = Collections.singleton(role);
+        this.role = UserRoleEnum.convertUserRoleEnumToSring(role);
     }
 
     public User(String firstName, String lastName, String email, String doc) {
@@ -51,10 +59,10 @@ public class User{
         this.admin = false;
         this.userType = UserTypeEnum.customer;
         this.orders = new ArrayList<>();
-        this.role = Collections.singleton(UserRoleEnum.guest);
+        this.role = UserRoleEnum.convertUserRoleEnumToSring(UserRoleEnum.guest);
     }
 
-    public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum userType, String doc, List<Order> orders) {
+    public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum userType, String doc, String role, String username, String password, Boolean enabled, List<Order> orders) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,8 +70,19 @@ public class User{
         this.admin = admin;
         this.userType = userType;
         this.doc = doc;
+        this.role = (role.isEmpty() || role.trim().isEmpty()) ? UserRoleEnum.convertUserRoleEnumToSring(UserRoleEnum.guest) : role;
+        this.userName = username;
+        this.password = password;
+        this.enabled = enabled;
         this.orders = orders;
-        this.role = Collections.singleton(UserRoleEnum.guest);
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public boolean isEnabled() {
@@ -74,12 +93,12 @@ public class User{
         this.enabled = enabled;
     }
 
-    public Set<UserRoleEnum> getRoles() {
-        return role;
+    public UserTypeEnum getUserType() {
+        return userType;
     }
 
-    public void setRoles(Set<UserRoleEnum> roles) {
-        this.role = roles;
+    public void setUserType(UserTypeEnum userType) {
+        this.userType = userType;
     }
 
     public String getUserName() {
@@ -161,4 +180,5 @@ public class User{
     public void setTipoUsuario(UserTypeEnum userType) {
         this.userType = userType;
     }
+
 }

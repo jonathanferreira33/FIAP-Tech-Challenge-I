@@ -30,15 +30,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "api/payment/**",
-                                "api/productmanagement/**",
-                                "api/registeruser",
-                                "api/registerorder/**"
-                        ).permitAll()
-                        .anyRequest().authenticated() // Exige autenticação para outros endpoints
-                )
+                .authorizeHttpRequests(auth -> {
+                    auth.requestMatchers("auth/**").permitAll();
+                    auth.requestMatchers("api/registeruser").permitAll();
+                    auth.requestMatchers("api/registerorder/**").permitAll();
+                    auth.requestMatchers("/h2-console/**").permitAll();
+                    auth.anyRequest().authenticated();                         // Exige autenticação para outros endpoints
+                })
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(httpBasic -> {});
 

@@ -30,8 +30,9 @@ public class RegisterUserController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody UserRequest userRequest) {
 
+        userRequest.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
         var user = registerServiceport.registerUser(UserConverter.userRequestToUserCreated(userRequest));
-        user.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
+
 
         return ResponseEntity.status(HttpStatus.CREATED)
                     .body(ApiResponseFactory.success(UserConverter.userToUserReponseCreated(user)));

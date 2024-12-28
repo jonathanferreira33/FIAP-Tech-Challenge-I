@@ -1,5 +1,7 @@
 package com.fiap.Tech_Challenge_I.adapter.controller;
 
+import com.fiap.Tech_Challenge_I.adapter.coverter.CustomUserDetails;
+import com.fiap.Tech_Challenge_I.adapter.coverter.UserConverter;
 import com.fiap.Tech_Challenge_I.adapter.factory.ApiResponseFactory;
 import com.fiap.Tech_Challenge_I.adapter.request.AuthenticationRequest;
 import com.fiap.Tech_Challenge_I.core.domain.User;
@@ -30,11 +32,17 @@ public class AuthenticationContoller {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthenticationRequest dataLogin){
 
-        var userNamePassword = new UsernamePasswordAuthenticationToken(dataLogin.login(), dataLogin.password());
-        var auth = this.authenticationManager.authenticate(userNamePassword);
-        var token = tokenServicePort.generateToken((User) auth.getPrincipal());
+        try {
+            var userNamePassword = new UsernamePasswordAuthenticationToken(dataLogin.login(), dataLogin.password());
+            var auth = this.authenticationManager.authenticate(userNamePassword);
+            var token = tokenServicePort.generateToken(UserConverter.ObjectToUser((CustomUserDetails) auth.getPrincipal()));
 
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(ApiResponseFactory.success(token));
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(ApiResponseFactory.success(token));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponseFactory.error(e.getMessage()));
+        }
     }
 }
