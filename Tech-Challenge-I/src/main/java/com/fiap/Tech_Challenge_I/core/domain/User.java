@@ -1,13 +1,9 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
-import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.*;
-import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.Delivery;
 import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class User{
 
@@ -172,13 +168,4 @@ public class User{
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
-
-    public UserTypeEnum getTipoUsuario() {
-        return userType;
-    }
-
-    public void setTipoUsuario(UserTypeEnum userType) {
-        this.userType = userType;
-    }
-
 }

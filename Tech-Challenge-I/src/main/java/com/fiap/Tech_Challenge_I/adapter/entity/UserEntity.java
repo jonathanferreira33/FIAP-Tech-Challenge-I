@@ -19,7 +19,7 @@ public class UserEntity {
     private String lastName;
     private String email;
     private boolean admin;
-    private UserTypeEnum tipoUsuario;
+    private UserTypeEnum userType;
     private String doc;
 
     private String username;
@@ -27,23 +27,28 @@ public class UserEntity {
     private boolean enabled;
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.EAGER)
     private List<OrderEntity> orders;
 
     public UserEntity() {
     }
 
-    public UserEntity(Integer id) {
+    public UserEntity(int id) {
         this.id = id;
     }
 
-    public UserEntity(String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
+    public UserEntity(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc, String username, boolean enabled, String role, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.admin = admin;
-        this.tipoUsuario = tipoUsuario;
+        this.userType = tipoUsuario;
         this.doc = doc;
+        this.username = username;
+        this.enabled = enabled;
+        this.role = role;
+        this.password = password;
     }
 
     public UserEntity(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc, List<OrderEntity> orders) {
@@ -52,7 +57,7 @@ public class UserEntity {
         this.lastName = lastName;
         this.email = email;
         this.admin = admin;
-        this.tipoUsuario = tipoUsuario;
+        this.userType = tipoUsuario;
         this.doc = doc;
         this.orders = orders;
     }
@@ -63,6 +68,7 @@ public class UserEntity {
         this.password = password;
         this.role = role;
     }
+
 
 
     public boolean isEnabled() {
@@ -153,11 +159,11 @@ public class UserEntity {
         this.admin = admin;
     }
 
-    public UserTypeEnum getTipoUsuario() {
-        return tipoUsuario;
+    public UserTypeEnum getUserType() {
+        return userType;
     }
 
-    public void setTipoUsuario(UserTypeEnum tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
+    public void setUserType(UserTypeEnum userType) {
+        this.userType = userType;
     }
 }
