@@ -6,4 +6,6 @@ public interface IUserRepositoryPort {
     public UserEntity create(UserEntity user);
     public UserEntity findByDoc(String doc);
     public UserEntity findById(Integer id);
+    public UserEntity findByUsername(String username);
+    public UserEntity editUser(UserEntity user);
 }

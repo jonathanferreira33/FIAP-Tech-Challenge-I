@@ -1,17 +1,14 @@
 package com.fiap.Tech_Challenge_I.adapter.request;
 
-import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
-import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Data
 public class OrderRequest {
     private int idOrder;
-    private UserRequest user;
+    private UserRequest2 user;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private List<ProductRequest> products;
@@ -26,7 +23,7 @@ public class OrderRequest {
         this.products = products;
     }
 
-    public OrderRequest(UserRequest user, List<ProductRequest> products) {
+    public OrderRequest(UserRequest2 user, List<ProductRequest> products) {
         this.user = user;
         this.startDate = LocalDateTime.now();
         this.products = products;
@@ -48,11 +45,11 @@ public class OrderRequest {
         this.idOrder = idOrder;
     }
 
-    public UserRequest getUser() {
+    public UserRequest2 getUser() {
         return user;
     }
 
-    public void setUser(UserRequest user) {
+    public void setUser(UserRequest2 user) {
         this.user = user;
     }
 

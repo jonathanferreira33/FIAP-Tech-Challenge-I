@@ -47,4 +47,21 @@ public class UserRepositoryAdapter implements IUserRepositoryPort {
 
         throw new RuntimeException("User não encontrado");
     }
+
+    @Override
+    public UserEntity findByUsername(String username) {
+        UserEntity userMatch = userRepository.findByUsername(username);
+
+        if(userMatch == null)
+            return null;
+
+        return mapper.map(userMatch, UserEntity.class);
+    }
+
+    @Override
+    public UserEntity editUser(UserEntity user) {
+
+        UserEntity userMatch = userRepository.save(user);
+        return mapper.map(userMatch, UserEntity.class);
+    }
 }

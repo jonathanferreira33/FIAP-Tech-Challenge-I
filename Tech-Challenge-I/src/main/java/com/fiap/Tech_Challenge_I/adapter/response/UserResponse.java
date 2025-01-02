@@ -13,6 +13,7 @@ public class UserResponse {
     private boolean admin;
     private UserTypeEnum tipoUsuario;
     private String doc;
+    private String username;
 
     public UserResponse(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
         this.id = id;
@@ -27,8 +28,17 @@ public class UserResponse {
     public UserResponse() {
     }
 
-    public UserResponse(int id) {
+    public UserResponse(int id, String userName) {
         this.id = id;
+        this.username = userName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDoc() {
