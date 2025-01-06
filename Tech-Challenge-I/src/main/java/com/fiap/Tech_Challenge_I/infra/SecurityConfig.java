@@ -32,11 +32,11 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("auth/**").permitAll();
+                    auth.requestMatchers("api/payment/**").permitAll();
                     auth.requestMatchers("api/registeruser").permitAll();
-                    auth.requestMatchers("api/registerorder/**").permitAll();
-                    auth.requestMatchers("api/registerproduct/**").permitAll();
+                    auth.requestMatchers("api/productmanagement/**").permitAll();
                     auth.requestMatchers("/h2-console/**").permitAll();
-                    auth.anyRequest().authenticated();                         // Exige autenticação para outros endpoints
+                    auth.anyRequest().authenticated();  // Exige autenticação para outros endpoints
                 })
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

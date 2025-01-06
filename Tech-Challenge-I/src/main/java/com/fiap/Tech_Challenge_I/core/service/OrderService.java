@@ -9,6 +9,7 @@ import com.fiap.Tech_Challenge_I.core.port.IOrderRepositoryPort;
 import com.fiap.Tech_Challenge_I.core.port.IOrderServicePort;
 import com.fiap.Tech_Challenge_I.core.port.IProductManagementServicePort;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class OrderService implements IOrderServicePort {
@@ -30,6 +31,10 @@ public class OrderService implements IOrderServicePort {
                 .toList();
 
         order.setProducts(listProducts);
+
+        var totalValue = getTotalValue(listProducts);
+
+        order.setTotalValue(totalValue);
 
         var newOrder = orderRepositoryPort.createOrder(OrderConverter.orderToOrderEntity(order));
 
@@ -69,5 +74,13 @@ public class OrderService implements IOrderServicePort {
     @Override
     public void update(OrderEntity order) {
         orderRepositoryPort.update(order);
+    }
+
+    private BigDecimal getTotalValue(List<Product> listProductsOrder){
+        return BigDecimal.valueOf(
+                listProductsOrder.stream()
+                    .mapToDouble(Product::getPrice)
+                    .sum()
+                );
     }
 }

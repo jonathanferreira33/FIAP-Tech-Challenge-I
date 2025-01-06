@@ -21,10 +21,10 @@ public class PaymentController {
         this.paymentServicePort = paymentService;
     }
 
-    @PostMapping
+    @PostMapping("/idorder")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ApiResponse<PaymentResponse>> processPayment(@RequestParam int orderId,
-                                                                       @RequestParam BigDecimal amount){
+    public ResponseEntity<ApiResponse<PaymentResponse>> processPayment(@PathVariable("idorder") int orderId,
+                                                                       @RequestBody BigDecimal amount){
 
         var payment = paymentServicePort.processPayment(orderId,amount);
 
@@ -34,3 +34,4 @@ public class PaymentController {
                 ));
     }
 }
+

@@ -14,7 +14,8 @@ public class OrderConverter {
                 order.getOrderStatus(),
                 order.getStartDate(),
                 order.getProducts(),
-                order.getUser()
+                order.getUser(),
+                order.getTotalValue()
         );
     }
 
@@ -23,13 +24,13 @@ public class OrderConverter {
                 order.getIdOrder(),
                 order.getStartDate(),
                 order.getEndDate(),
-                order.getProducts().stream().map(ProductConverter::productEntityToProduct).toList()
+                order.getProducts().stream().map(ProductConverter::productEntityToProduct).toList(),
+                order.getTotalValue()
         );
     }
 
     public static Order orderRequestToOrder(OrderRequest order){
         return new Order(
-                order.getIdOrder(),
                 order.getStartDate(),
                 order.getEndDate(),
                 order.getProducts().stream().map(ProductConverter::productRequestToProduct).toList()
