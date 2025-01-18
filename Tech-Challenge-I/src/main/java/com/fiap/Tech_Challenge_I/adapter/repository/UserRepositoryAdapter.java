@@ -3,6 +3,7 @@ package com.fiap.Tech_Challenge_I.adapter.repository;
 import com.fiap.Tech_Challenge_I.adapter.entity.UserEntity;
 import com.fiap.Tech_Challenge_I.core.domain.User;
 import com.fiap.Tech_Challenge_I.core.port.IUserRepositoryPort;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;

@@ -3,6 +3,7 @@ package com.fiap.Tech_Challenge_I.core.domain;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.IOrderStatus;
 import com.fiap.Tech_Challenge_I.core.domain.OrderStatus.Incoming;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,16 +15,19 @@ public class Order{
     private List<Product> products;
     private User user;
     private Payment payment;
+    private BigDecimal totalValue;
 
     public Order() {
     }
 
-    public Order(int idOrder, LocalDateTime startDate, LocalDateTime endDate, List<Product> products) {
+    public Order(int idOrder, LocalDateTime startDate, LocalDateTime endDate, List<Product> products, BigDecimal totalValue) {
         this.idOrder = idOrder;
         this.orderStatus = new Incoming();
         this.startDate = startDate;
         this.endDate = endDate;
         this.products = products;
+        this.totalValue = totalValue;
+
     }
 
     public Order(LocalDateTime startDate, LocalDateTime endDate, List<Product> products) {
@@ -111,6 +115,14 @@ public class Order{
 
     public void delivery(){
         orderStatus.delivery(this);
+    }
+
+    public BigDecimal getTotalValue() {
+        return totalValue;
+    }
+
+    public void setTotalValue(BigDecimal totalValue) {
+        this.totalValue = totalValue;
     }
 }
 

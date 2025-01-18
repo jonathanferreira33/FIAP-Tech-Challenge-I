@@ -9,6 +9,7 @@ import com.fiap.Tech_Challenge_I.core.domain.Product;
 import com.fiap.Tech_Challenge_I.core.domain.User;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ public class OrderEntity {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "order_product",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -36,13 +37,15 @@ public class OrderEntity {
     )
     private List<ProductEntity> products;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id", referencedColumnName = "idPayment")
     private PaymentEntity payment;
+
+    private BigDecimal totalValue;
 
     public OrderEntity() {
     }
@@ -54,13 +57,14 @@ public class OrderEntity {
         this.endDate = endDate;
     }
 
-    public OrderEntity(int idOrder, IOrderStatus orderStatus, LocalDateTime startDate, List<Product> products, User user ) {
+    public OrderEntity(int idOrder, IOrderStatus orderStatus, LocalDateTime startDate, List<Product> products, User user, BigDecimal totalValue ) {
         this.idOrder = idOrder;
         this.orderStatus = convertStatusToType(orderStatus);
         this.startDate = startDate;
         this.endDate = null;
         this.products = products.stream().map(ProductConverter::productToProductEntity).toList();
         this.user = UserConverter.userToUserEntity(user);
+        this.totalValue = totalValue;
     }
 
     public OrderEntity(IOrderStatus orderStatus, LocalDateTime startDate, LocalDateTime endDate, List<ProductEntity> products) {
@@ -159,4 +163,11 @@ public class OrderEntity {
         this.endDate = endDate;
     }
 
+    public BigDecimal getTotalValue() {
+        return totalValue;
+    }
+
+    public void setTotalValue(BigDecimal totalValue) {
+        this.totalValue = totalValue;
+    }
 }

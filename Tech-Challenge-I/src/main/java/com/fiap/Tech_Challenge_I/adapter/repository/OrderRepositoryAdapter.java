@@ -3,8 +3,11 @@ package com.fiap.Tech_Challenge_I.adapter.repository;
 import com.fiap.Tech_Challenge_I.adapter.entity.OrderEntity;
 import com.fiap.Tech_Challenge_I.core.domain.Order;
 import com.fiap.Tech_Challenge_I.core.port.IOrderRepositoryPort;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +38,10 @@ public class OrderRepositoryAdapter implements IOrderRepositoryPort {
 
     @Override
     public Optional<OrderEntity> findOrderById(Integer id) {
-        return orderRepository.findById(id);
+        var order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+        Hibernate.initialize(order.getProducts());
+        Hibernate.initialize(order.getUser());
+        return Optional.of(order);
     }
 
     @Override

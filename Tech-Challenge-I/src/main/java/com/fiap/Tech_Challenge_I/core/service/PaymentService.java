@@ -33,9 +33,11 @@ public class PaymentService implements IPaymentServicePort {
         var order = orderServicePort.findOrderById(orderId);
         var newPayment = new Payment(order, amount, PaymentStatus.PENDING);
 
+        var paymentData = paymentRepository
+                .create(PaymentConverter.paymentToPaymentEntity(newPayment));
+
         Payment payment = PaymentConverter
-                .paymentEntityToPayment(paymentRepository
-                        .create(PaymentConverter.paymentToPaymentEntity(newPayment)));
+                .paymentEntityToPayment(paymentData);
 
         order.setPayment(payment);
         orderServicePort.update(OrderConverter.orderToOrderEntity(order));
