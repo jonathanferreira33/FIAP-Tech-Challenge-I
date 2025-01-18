@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationContoller {
 
     @Autowired
+
     private AuthenticationManager authenticationManager;
 
     private final ITokenServicePort tokenServicePort;

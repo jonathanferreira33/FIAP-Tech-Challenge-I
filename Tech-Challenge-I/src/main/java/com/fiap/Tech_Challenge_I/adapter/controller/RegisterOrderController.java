@@ -33,6 +33,9 @@ public class RegisterOrderController {
         if(orderRequest.getProducts().isEmpty())
             throw new IllegalArgumentException("Escolha ao menos 1 produto");
 
+        if(orderRequest.getUser() == null)
+            throw new IllegalArgumentException("User not found for ID: " + orderRequest.getUser().getId());
+
 
         var user = userManagementServicePort.findUserById(orderRequest.getUser().getId());
 

@@ -19,7 +19,7 @@ public class ProductEntity {
     private String shortDescription;
     private int categoryCode;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", fetch = FetchType.EAGER)
     private List<OrderEntity> orders;
 
     public ProductEntity() {

@@ -2,6 +2,7 @@ package com.fiap.Tech_Challenge_I.adapter.controller;
 
 import com.fiap.Tech_Challenge_I.adapter.coverter.PaymentConverter;
 import com.fiap.Tech_Challenge_I.adapter.factory.ApiResponseFactory;
+import com.fiap.Tech_Challenge_I.adapter.request.PaymentRequest;
 import com.fiap.Tech_Challenge_I.adapter.response.ApiResponse;
 import com.fiap.Tech_Challenge_I.adapter.response.PaymentResponse;
 import com.fiap.Tech_Challenge_I.core.port.IPaymentServicePort;
@@ -21,10 +22,12 @@ public class PaymentController {
         this.paymentServicePort = paymentService;
     }
 
-    @PostMapping("/idorder")
+    @PostMapping("/{idorder}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ApiResponse<PaymentResponse>> processPayment(@PathVariable("idorder") int orderId,
-                                                                       @RequestBody BigDecimal amount){
+    public ResponseEntity<ApiResponse<PaymentResponse>> processPayment(@PathVariable("idorder") Integer orderId,
+                                                                       @RequestBody PaymentRequest request){
+
+        BigDecimal amount = request.amount();
 
         var payment = paymentServicePort.processPayment(orderId,amount);
 
