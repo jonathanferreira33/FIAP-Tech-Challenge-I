@@ -1,5 +1,10 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
+import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User{
 
     private int id;
@@ -7,8 +12,14 @@ public class User{
     private String lastName;
     private String email;
     private boolean admin;
-    private UserTypeEnum tipoUsuario;
+    private UserTypeEnum userType;
     private String doc;
+    private List<Order> orders;
+
+    private String userName;
+    private String password;
+    private String role;
+    private boolean enabled;
 
     public User() {
     }
@@ -17,22 +28,97 @@ public class User{
         this.id = id;
     }
 
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+        this.role = UserRoleEnum.convertUserRoleEnumToSring(UserRoleEnum.guest);
+    }
+
+    public User(String userName, String password, String role, Boolean enabled) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+        this.enabled = enabled;
+    }
+
+    public User(String userName, String password, UserRoleEnum role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = UserRoleEnum.convertUserRoleEnumToSring(role);
+    }
+
     public User(String firstName, String lastName, String email, String doc) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.admin = false;
         this.doc = doc;
+        this.admin = false;
+        this.userType = UserTypeEnum.customer;
+        this.orders = new ArrayList<>();
+        this.role = UserRoleEnum.convertUserRoleEnumToSring(UserRoleEnum.guest);
     }
 
-    public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum tipoUsuario, String doc) {
+    public User(int id, String firstName, String lastName, String email, boolean admin, UserTypeEnum userType, String doc, String role, String username, String password, Boolean enabled, List<Order> orders) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.admin = admin;
-        this.tipoUsuario = tipoUsuario;
+        this.userType = userType;
         this.doc = doc;
+        this.role = (role.isEmpty() || role.trim().isEmpty()) ? UserRoleEnum.convertUserRoleEnumToSring(UserRoleEnum.guest) : role;
+        this.userName = username;
+        this.password = password;
+        this.enabled = enabled;
+        this.orders = orders;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public UserTypeEnum getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserTypeEnum userType) {
+        this.userType = userType;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public String getDoc() {
@@ -81,13 +167,5 @@ public class User{
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
-    }
-
-    public UserTypeEnum getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(UserTypeEnum tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
     }
 }

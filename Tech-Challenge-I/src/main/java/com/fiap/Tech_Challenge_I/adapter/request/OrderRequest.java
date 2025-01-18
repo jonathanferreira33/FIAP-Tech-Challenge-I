@@ -1,33 +1,31 @@
 package com.fiap.Tech_Challenge_I.adapter.request;
 
-import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
-import com.fiap.Tech_Challenge_I.core.domain.OrderStatusEnum;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 public class OrderRequest {
     private int idOrder;
-    private UserResponse user;
-    private OrderStatusEnum orderStatus;
-    private Date startDate;
-    private Date endDate;
+    private UserRequest2 user;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private List<ProductRequest> products;
 
+
     public OrderRequest() {
+        this.startDate = LocalDateTime.now();
     }
 
-    public OrderRequest(int idOrder) {
-        this.idOrder = idOrder;
+    public OrderRequest(List<ProductRequest> products) {
+        this.startDate = LocalDateTime.now();
+        this.products = products;
     }
 
-    public OrderRequest(UserResponse user, OrderStatusEnum orderStatus, Date startDate, Date endDate, List<ProductRequest> products) {
+    public OrderRequest(UserRequest2 user, List<ProductRequest> products) {
         this.user = user;
-        this.orderStatus = orderStatus;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = LocalDateTime.now();
         this.products = products;
     }
 
@@ -47,35 +45,27 @@ public class OrderRequest {
         this.idOrder = idOrder;
     }
 
-    public UserResponse getUser() {
+    public UserRequest2 getUser() {
         return user;
     }
 
-    public void setUser(UserResponse user) {
+    public void setUser(UserRequest2 user) {
         this.user = user;
     }
 
-    public OrderStatusEnum getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatusEnum orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 }

@@ -1,9 +1,8 @@
 package com.fiap.Tech_Challenge_I.infra;
 
 import com.fiap.Tech_Challenge_I.core.port.*;
-import com.fiap.Tech_Challenge_I.core.service.OrderService;
-import com.fiap.Tech_Challenge_I.core.service.ProductManagementService;
-import com.fiap.Tech_Challenge_I.core.service.RegisterUserService;
+import com.fiap.Tech_Challenge_I.core.service.*;
+import com.fiap.Tech_Challenge_I.core.service.gateway.PaymentGateway;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +26,27 @@ public class BeanConfig {
     }
 
     @Bean
-    public IOrderServicePort orderServicePortImpl(IOrderRepositoryPort orderRepositoryPort){
-        return new OrderService(orderRepositoryPort);
+    public IOrderServicePort orderServicePortImpl(IOrderRepositoryPort orderRepositoryPort, IProductManagementServicePort productManagementServicePort){
+        return new OrderService(orderRepositoryPort, productManagementServicePort);
+    }
+
+    @Bean
+    public IUserManagementServicePort userManagementServicePort(IUserRepositoryPort userRepositoryPort){
+        return new UserManagementService(userRepositoryPort);
+    }
+
+    @Bean
+    public IPaymentServicePort paymentServicePort(IPaymentRepositoryPort paymentRepositoryPort, IPaymentGateway paymentGateway, IOrderServicePort orderServicePort) {
+        return new PaymentService(paymentRepositoryPort, paymentGateway, orderServicePort);
+    }
+
+    @Bean
+    public IPaymentGateway paymentGateway(){
+        return new PaymentGateway();
+    }
+
+    @Bean
+    public ITokenServicePort tokenServicePort() {
+        return new TokenService();
     }
 }

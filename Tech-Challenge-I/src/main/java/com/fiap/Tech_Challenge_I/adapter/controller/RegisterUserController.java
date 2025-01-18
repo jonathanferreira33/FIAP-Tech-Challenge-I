@@ -1,15 +1,21 @@
 package com.fiap.Tech_Challenge_I.adapter.controller;
 
 import com.fiap.Tech_Challenge_I.adapter.coverter.UserConverter;
-import com.fiap.Tech_Challenge_I.adapter.request.UserRequest;
+import com.fiap.Tech_Challenge_I.adapter.factory.ApiResponseFactory;
+import com.fiap.Tech_Challenge_I.adapter.request.UserRequest2;
+import com.fiap.Tech_Challenge_I.adapter.response.ApiResponse;
 import com.fiap.Tech_Challenge_I.adapter.response.UserResponse;
 import com.fiap.Tech_Challenge_I.core.port.IRegisterUserServicePort;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("api/registeruser")
+@RequestMapping(value = "api/registeruser", produces = {"application/json"})
 public class RegisterUserController {
 
     private final IRegisterUserServicePort registerServiceport;
@@ -20,12 +26,15 @@ public class RegisterUserController {
         this.userConverter = userConverter;
     }
 
-    @PostMapping()
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse createUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<ApiResponse<UserResponse>> createUser(@RequestBody UserRequest2 userRequest) {
 
-        var user = registerServiceport.registerUser(UserConverter.userRequestToUser(userRequest));
+        userRequest.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
+        var user = registerServiceport.registerUser(UserConverter.userRequestToUserCreated(userRequest));
 
-        return UserConverter.userToUserReponse(user);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(ApiResponseFactory.success(UserConverter.userToUserReponseCreated(user)));
     }
 }

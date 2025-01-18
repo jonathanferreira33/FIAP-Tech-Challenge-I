@@ -6,6 +6,7 @@ import com.fiap.Tech_Challenge_I.core.domain.Product;
 import com.fiap.Tech_Challenge_I.core.port.IProductRepositoryPort;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +34,8 @@ public class ProductManagementRepositoryAdapter implements IProductRepositoryPor
         return productManagementRepository.findByCategoryCode(category);
     }
 
+
+
     @Override
     public Optional<ProductEntity> findById(Integer id) {
         return productManagementRepository.findById(id);
@@ -48,5 +51,11 @@ public class ProductManagementRepositoryAdapter implements IProductRepositoryPor
     @Override
     public void delete(Integer id) {
         productManagementRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public List<ProductEntity> findProductsByOrderId(int idOrder) {
+        return productManagementRepository.findProductsByOrderId(idOrder);
     }
 }

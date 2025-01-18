@@ -3,6 +3,7 @@ package com.fiap.Tech_Challenge_I.adapter.repository;
 import com.fiap.Tech_Challenge_I.adapter.entity.UserEntity;
 import com.fiap.Tech_Challenge_I.core.domain.User;
 import com.fiap.Tech_Challenge_I.core.port.IUserRepositoryPort;
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
@@ -35,6 +36,33 @@ public class UserRepositoryAdapter implements IUserRepositoryPort {
         if(userMatch == null)
             return null;
 
+        return mapper.map(userMatch, UserEntity.class);
+    }
+
+    @Override
+    public UserEntity findById(Integer id) {
+        Optional<UserEntity> userMatch =  userRepository.findById(id);
+
+        if(userMatch.isPresent())
+            return userMatch.get();
+
+        throw new RuntimeException("User não encontrado");
+    }
+
+    @Override
+    public UserEntity findByUsername(String username) {
+        UserEntity userMatch = userRepository.findByUsername(username);
+
+        if(userMatch == null)
+            return null;
+
+        return mapper.map(userMatch, UserEntity.class);
+    }
+
+    @Override
+    public UserEntity editUser(UserEntity user) {
+
+        UserEntity userMatch = userRepository.save(user);
         return mapper.map(userMatch, UserEntity.class);
     }
 }

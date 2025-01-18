@@ -1,7 +1,11 @@
 package com.fiap.Tech_Challenge_I.core.domain;
 
 public enum DeliveryTypeEnum {
-    withdraw(1),delivery(2);
+    INCOMING(1),
+    READY(2),
+    VERIFICATION(3),
+    DELIVERY(4),
+    COMPLETED(5);
 
     private final int deliveryEvent;
 
