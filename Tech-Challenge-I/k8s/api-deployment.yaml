@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    app: tech-challenge-i
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: tech-challenge-i
+  template:
+    metadata:
+      labels:
+        app: tech-challenge-i
+    spec:
+      containers:
+        - name: api-container
+          image: larissay/tech-challenge-i:latest 
+          ports:
+            - containerPort: 8080  
+          env:
+            - name: ENV_VAR_NAME  # Defina variáveis de ambiente, se necessário
+              value: "dev"
