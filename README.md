@@ -29,6 +29,6 @@ docker-compose up -d
 ## Kubernetes
 - Startar pod com comando
   
-kubectl apply -f "nome do arquivo yaml"
+kubectl run tech-challenge-pod --image=larissay/tech-challenge-i --restart=Never --port=30000
 
 ## Teste
