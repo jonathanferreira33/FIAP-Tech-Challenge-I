@@ -37,7 +37,7 @@ public class OrderEntity {
     )
     private List<ProductEntity> products;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE) //User podera ter N Orders e cada Order pode ter apenas 1 User
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
