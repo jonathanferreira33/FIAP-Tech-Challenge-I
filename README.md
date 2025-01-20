@@ -25,4 +25,9 @@ docker build -t apptest .
 docker-compose build  
 
 docker-compose up -d
+
+## Kubernetes
+- Startar pod com comando
+kubectl apply -f "nome do arquivo yaml"
+
 ## Teste
