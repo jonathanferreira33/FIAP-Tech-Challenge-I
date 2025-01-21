@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: tech-challenge-hpa
+  name: api-hpa
   namespace: default
 spec:
   scaleTargetRef:

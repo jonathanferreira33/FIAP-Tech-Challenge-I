@@ -1,21 +1,30 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    container_name: api-container
+    build: .
     ports:
       - "8080:8080"
     environment:
-      - SPRING_PROFILES_ACTIVE=dev
-      - SPRING_DATASOURCE_URL=jdbc:h2:mem:banco
-      - SPRING_DATASOURCE_DRIVER_CLASSNAME=org.h2.Driver
-      - SPRING_DATASOURCE_USERNAME=sa
-      - SPRING_DATASOURCE_PASSWORD=admin123
-      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.H2Dialect
-      - SPRING_H2_CONSOLE_ENABLED=true
+      - DATABASE_URL=jdbc:postgresql://db:5432/db0001
     networks:
       - mynetwork
+
+  db:
+    image: postgres:13
+    container_name: db-container
+    environment:
+      - POSTGRES_USER=postegre
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_DB=db0001
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
 networks:
   mynetwork:
     driver: bridge
+
+volumes:
+  pgdata:  # Declarando o volume pgdata
+    driver: local
