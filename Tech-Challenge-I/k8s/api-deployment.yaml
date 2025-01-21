@@ -5,7 +5,7 @@ metadata:
   labels:
     app: tech-challenge-i
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: tech-challenge-i
@@ -20,5 +20,6 @@ spec:
           ports:
             - containerPort: 8080  
           env:
-            - name: ENV_VAR_NAME  # Defina variáveis de ambiente, se necessário
-              value: "dev"
+            - name: DATABASE_URL  # Defina variáveis de ambiente, se necessário
+              value: "jdbc:postgresql://db-service:5432/db0001"
+
