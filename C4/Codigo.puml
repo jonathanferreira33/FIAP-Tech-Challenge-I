@@ -1,0 +1,44 @@
+@startuml TechChallengeCodigo
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+class User {
+  - String firstName
+  - String lastName
+  - String email
+  - String userName
+  - String password
+  - String role
+  - String doc
+  - boolean isAdmin
+  - boolean enabled
+  - UserTypeEnum userType
+  - List<Order> orders
+}
+
+class Product {
+  - String productName
+  - String shortDescription
+  - Date publishedDate
+  - Double price
+  - Integer categoryCode
+  - List<Order> orders
+}
+
+class Payment {
+  - Order order
+  - Date startDate
+  - Date endDate
+  - BigDecimal amount
+  - PaymentStatus status
+  - List<Order> orders
+}
+
+class Order {
+  - OrderStatusEnum orderStatus
+  - Date startDate
+  - Date endDate
+  - List<ProductEntity> products
+  - User user
+  - Payment payment
+}
+@enduml
