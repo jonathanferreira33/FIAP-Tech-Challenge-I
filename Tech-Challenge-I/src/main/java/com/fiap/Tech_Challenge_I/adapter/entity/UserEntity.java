@@ -1,12 +1,9 @@
 package com.fiap.Tech_Challenge_I.adapter.entity;
 
-import com.fiap.Tech_Challenge_I.core.domain.Role.UserRoleEnum;
 import com.fiap.Tech_Challenge_I.core.domain.UserTypeEnum;
 import jakarta.persistence.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "TCDB_USER")
@@ -18,7 +15,7 @@ public class UserEntity {
     private String firstName;
     private String lastName;
     private String email;
-    private boolean admin;
+    private boolean isAdmin;
     private UserTypeEnum userType;
     private String doc;
 
@@ -42,7 +39,7 @@ public class UserEntity {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.admin = admin;
+        this.isAdmin = admin;
         this.userType = tipoUsuario;
         this.doc = doc;
         this.username = username;
@@ -56,7 +53,7 @@ public class UserEntity {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.admin = admin;
+        this.isAdmin = admin;
         this.userType = tipoUsuario;
         this.doc = doc;
         this.orders = orders;
@@ -152,11 +149,11 @@ public class UserEntity {
     }
 
     public boolean isAdmin() {
-        return admin;
+        return isAdmin;
     }
 
     public void setAdmin(boolean admin) {
-        this.admin = admin;
+        this.isAdmin = admin;
     }
 
     public UserTypeEnum getUserType() {

@@ -8,6 +8,7 @@ spec:
     app: tech-challenge-i  # Seleciona os pods com o label "app: my-api"
   ports:
     - protocol: TCP
-      port: 80  # Porta exposta no serviço
-      targetPort: 30900  # Porta do container (onde a API está escutando)
+      port: 8080  # Porta exposta no serviço
+      targetPort: 8080  # Porta do container (onde a API está escutando)
+      nodePort: 31900
   

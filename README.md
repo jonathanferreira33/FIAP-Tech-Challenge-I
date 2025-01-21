@@ -59,6 +59,13 @@ docker-compose up -d
 
 ---
 
+## Kubernetes
+- Startar pod com comando
+  
+kubectl run tech-challenge-pod --image=larissay/tech-challenge-i --restart=Never --port=8080
+
+---
+
 ## Teste
 
 ---
