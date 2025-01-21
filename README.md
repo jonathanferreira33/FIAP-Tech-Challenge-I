@@ -62,7 +62,14 @@ docker-compose up -d
 ## Kubernetes
 - Startar pod com comando
   
-kubectl run tech-challenge-pod --image=larissay/tech-challenge-i --restart=Never --port=8080
+kubectl apply -f api-deployment.yaml  
+
+kubectl apply -f api-service.yaml  
+
+kubectl apply -f db-deployment.yaml  
+
+kubectl apply -f db-service.yaml  
+
 
 ---
 
