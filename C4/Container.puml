@@ -1,0 +1,26 @@
+@startuml TechChallengeContainer
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person_Ext(usuario, "Usuário", "Usuário que interage com o sistema")
+Container(webapp, "Aplicação Web", "tecnologia em definição", "Frontend da aplicação web")
+Container(mobileapp, "Aplicação Mobile", "tecnologia em definição", "Frontend da aplicação mobile")
+Container(api, "API Backend", "Spring Boot", "API REST para funcionalidades de backend")
+ContainerDb(database, "Banco de Dados", "PostgreSQL", "Armazena informações do sistema")
+
+Rel(usuario, webapp, "Usa")
+Rel(usuario, mobileapp, "Usa")
+Rel(webapp, api, "Requisições HTTP(S)")
+Rel(mobileapp, api, "Requisições HTTP(S)")
+Rel(api, database, "SQL", "Usa")
+
+
+Person(colaborador, "Colaborador", "Colaborador que interage com o sistema")
+Container(webappadmin, "Aplicação Web Administrativa", "tecnologia em definição", "Frontend da aplicação web administrativa")
+Container(api, "API Backend", "Spring Boot", "API REST para funcionalidades de backend")
+ContainerDb(database, "Banco de Dados", "PostgreSQL", "Armazena informações do sistema")
+
+Rel(colaborador, webappadmin, "Usa")
+Rel(webappadmin, api, "Requisições HTTP(S)")
+
+
+@enduml
