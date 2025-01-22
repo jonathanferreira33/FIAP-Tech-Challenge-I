@@ -26,7 +26,7 @@ public class RegisterUserService implements IRegisterUserServicePort {
 
       */
 
-        var newUser = userRepositoryPort.create(UserConverter.userToUserEntityCreated(user));
+        var newUser = userRepositoryPort.cregit sttate(UserConverter.userToUserEntityCreated(user));
 
         return UserConverter.userEntityToUser(newUser);
     }

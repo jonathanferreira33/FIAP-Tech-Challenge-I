@@ -1,6 +1,16 @@
 # FIAP-Tech-Challenge-I
 
+## Sistema de Controle de Pedidos para Lanchonete - Tech Challenge
+
+
+### Desenho de Arquitetura de Infraestrutura
+
+![Diagrama de Infra](/C4/imgs/Arquitetura-Infra.png)
+
+---
+
 ```
+
 com.fiap.TECH_Challenge
 ├── core
 │   ├── domain              // Entidades, Value Objects, Regras de Negócio
@@ -21,8 +31,6 @@ com.fiap.TECH_Challenge
 
 ```
 
-# Sistema de Controle de Pedidos para Lanchonete - Tech Challenge
-
 MIRO - https://miro.com/app/board/uXjVLXZUyY0=/
 
 ## Descrição do Problema
@@ -41,7 +49,18 @@ Para resolver esse problema, será desenvolvido um **Sistema de Autoatendimento 
 ## Sumário 
 
 ## Introdução 
+
 ## Features
+
+| Feature | Objetivo |
+| ------ | ------ |
+| Doc | Aumentar a compreensão, manutenção, colaboração e facilitar o uso do software por desenvolvedores e usuários |
+| Implementacao JWT | Criar autenticação e autorização de usuários de forma segura, garantindo integridade, confidencialidade. Requisito mínimo para aplicações distribuídas e modernas |
+| Pagamento | Implementação de consumo API Marcado Pago (andamento) |
+| Padrao Response | Facilitar integração, padronizar comunicação, melhorar debugging e garantir consistência entre sistemas e consumidores da API |
+| PostgreSQL| Implementar banco de dados PostgreSQL |
+
+
 ## Requisitos
 ## Local
 ## Docker
