@@ -1,0 +1,18 @@
+@startuml TechChallengeComponent
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container(api, "API Backend", "Spring Boot", "API REST para funcionalidades de backend") {
+    Component(controller, "Controlador REST", "Arquitetura Hexagonal", "Recebe requisições HTTP")
+    Component(portservice, "Interface", "Interface de acesso ao Serviço", "Contém contratos de métodos de negócio")
+    Component(service, "Serviço", "Classe de Serviço", "Contém lógica de negócio")
+    Component(portrepository, "Interface", "Interface de acesso a repository", "Contém contratos de operações de banco de dados")
+    Component(repository, "Repositório", "Interface JPA", "Gerencia operações de banco de dados")
+}
+
+Rel(controller, portservice, "Chamada de Métodos")
+Rel(portservice, service, "Chamada de Métodos")
+Rel(service, portrepository, "Chamada de Métodos")
+Rel(portrepository, repository, "Chamada de Métodos")
+
+
+@enduml

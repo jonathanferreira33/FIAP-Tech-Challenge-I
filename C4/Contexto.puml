@@ -1,0 +1,32 @@
+@startuml TechChallengeContext
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(usuario, "Usuário", "Usuário que interage com o sistema")
+System(sistemaGestao, "Sistema de Realização de Pedidos", "Sistema que cadastra novos pedidos")
+System_Ext(servicoPagamento, "Sistema de Pagamentos", "Sistema externo para processamento de pagamentos dos pedidos")
+System_Ext(servicoNotificacaoPagamento, "Serviço de Notificações", "Serviço interno para enviar notificações")
+System_Ext(servicoNotificacao, "Serviço de Notificações", "Serviço interno para enviar notificações")
+
+Rel(usuario, sistemaGestao, "Utiliza")
+Rel(sistemaGestao, servicoPagamento, "Processa pagamentos")
+Rel(servicoPagamento, servicoNotificacaoPagamento, "Envia notificações de Pagamentos")
+Rel(sistemaGestao, servicoNotificacao, "Envia notificações")
+
+
+
+Person(colaboradorCozinha, "Colaborador Cozinha", "Colaborador Cozinha que interage com o sistema para confecção dos pedidos")
+System(sistemaAdmPedidos, "Sistema de Gerenciamento de Pedidos", "Sistema que gerencia novos pedidos")
+System_Ext(servicoNotificacao, "Serviço de Notificações", "Serviço interno para enviar notificações")
+
+Rel(colaboradorCozinha, sistemaAdmPedidos, "Utiliza")
+Rel(sistemaAdmPedidos, servicoNotificacao, "Envia notificações")
+
+
+Person(colaboradorExpedicao, "Colaborador Expedição", "Colaborador Expedição que interage com o sistema para liberação e entrega de pedidos")
+System(sistemaAdmPedidos, "Sistema de Gerenciamento de Pedidos", "Sistema que gerencia novos pedidos")
+System(servicoNotificacao, "Serviço de Notificações", "Serviço interno para enviar notificações")
+
+Rel(colaboradorExpedicao, sistemaAdmPedidos, "Utiliza")
+Rel(sistemaGestao, servicoNotificacao, "Envia notificações")
+
+@enduml

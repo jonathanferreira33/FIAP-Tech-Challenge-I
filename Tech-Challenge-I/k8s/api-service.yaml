@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: tech-challenge-api-service
+  name: api-service
 spec:
-  type: LoadBalancer  # Pode ser ClusterIP, NodePort ou LoadBalancer dependendo da necessidade
+  type: NodePort  # Pode ser ClusterIP, NodePort ou LoadBalancer dependendo da necessidade
   selector:
     app: tech-challenge-i  # Seleciona os pods com o label "app: my-api"
   ports:
     - protocol: TCP
-      port: 80  # Porta exposta no serviço
-      targetPort: 30900  # Porta do container (onde a API está escutando)
+      port: 80 # Porta exposta no serviço
+      targetPort: 8080  # Porta do container (onde a API está escutando)
+      nodePort: 30010
   
